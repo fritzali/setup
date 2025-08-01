@@ -14,3 +14,8 @@
 - Communication: IR FHD Camera (ToF sensor, mechanical shutter, 2 2W speaker)
 - Wireless: WiFi® 7 (160MHz, Bluetooth® 5.4)
 - Ports: Standard (2 USB-A USB3.2 G1 5Gb/s, 2 USB-C® USB4® 40Gb/s, 1 HDMI® 2.1 8K/60Hz, 1 3.5mm combo jack, 1 SD card reader)
+
+#### Lenovo Legion 5 G6 (15" AMD) 2021
+
+- Model: Legion 5 15ACH6A 82NW004PGE
+- 
