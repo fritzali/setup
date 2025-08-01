@@ -1,6 +1,6 @@
 ## Tested Hardware
 
-#### Lenovo IdeaPad Pro 5 G10 (14" AMD)
+#### Lenovo IdeaPad Pro 5 G10 (14" AMD) 2025
 
 - Model: IdeaPad Pro 5 14AKP10 83JL0016GE
 - Processor: AMD Ryzen™ AI 7 350 (16 thread, 4(4) core, 2-5(3.5)GHz, 15-54W TDP, TSMC 4nm FinFET, 8MB L2, 16MB L3)
