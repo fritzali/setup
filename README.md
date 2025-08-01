@@ -2,7 +2,7 @@
 
 This repository aims to provide a streamlined approach for installing a basic linux system and to automate most of the customization process.
 
-#### Hardware Specifications
+#### Tested Hardware Specifications
 
 - Model: Lenovo IdeaPad Pro 5 G10 (14" AMD) 14AKP10 83JL0016GE
 - Processor: AMD Ryzen™ AI 7 350 (16 thread, 4(4) core, 2-5(3.5)GHz, 15-54W TDP, TSMC 4nm FinFET)
