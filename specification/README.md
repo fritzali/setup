@@ -18,4 +18,14 @@
 #### Lenovo Legion 5 G6 (15" AMD) 2021
 
 - Model: Legion 5 15ACH6A 82NW004PGE
-- 
+- Processor: 
+- Graphics: 
+- Display: 
+- Memory: 
+- Storage: 
+- Battery: 
+- Keyboard: 
+- Mechanics: 
+- Communication: 
+- Wireless: 
+- Ports: 
