@@ -28,5 +28,5 @@
 - Keyboard: QWERTZ (6 rows, backlit, numeric keypad, buttonless Mylar surface touchpad, 69x104mm)
 - Mechanics: Phantom Blue & Shadow Black (PC, ABS, 362.56x260.61x22.5-25.75mm, 2.4kg)
 - Communication: HD 720p Camera (fixed focus, electronic shutter, 2 2W speakers)
-- Wireless: WiFi 6 (Bluetooth 5.1 used, Bluetooth® 5.2 ready)
+- Wireless: WiFi 6 (Bluetooth 5.1 used, Bluetooth 5.2 ready)
 - Ports: Standard (4 USB-A USB 3.2 G1, 2 USB-C USB 3.2 G2, 1 HDMI 2.1, 1 RJ-45 ethernet, 1 3.5mm combo jack, 1 power connector)
