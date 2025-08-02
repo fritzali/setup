@@ -9,7 +9,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
    2. Verify the checksum by running <code>pacman-key -v <i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso.sig</code> from an existing system with the date matching the image version.
    3. Write the ISO to a USB flash drive.
 
-      > **This will delete all data stored on the device, so make sure to save any important files beforehand.**
+      > **This will delete all data stored on the device, so make sure to secure any important files beforehand.**
 
       Determine the name of your USB flash drive by running `ls -l /dev/disk/by-id/usb-*` and check `lsblk` to ensure that the device is not mounted. In case any partitions are mounted, run `umount`
       on either the device or the mount point. Using basic `coreutils` commands for the sake of simplicity, there are several equivalent options for actually writing the image:
