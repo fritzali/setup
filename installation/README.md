@@ -74,7 +74,15 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       <pre>ping archlinux.org</pre>
 
    8. Run `timedatectl` to ensure the system clock is synchronized.
-   9. The live system recognizes your disks and assigns them to a block device like `/dev/sda` for SATA storage, or `/dev/nvme0n1` for NVMe PCIe memory, or `/dev/mmcblk0` for SD cards.
+   9. After your disks are recognized, the live system assigns them to a block device like `/dev/sda` for SATA storage or `/dev/nvme0n1` for NVMe PCIe memory, as well as `/dev/mmcblk0` for eMMC SD
+      cards. Identify these devices by running <pre>fdisk -l</pre> before partitioning the drives.
+
+      > **Different physical and logical sector sizes may lead to suboptimal performance, especially with LUKS encryption. As the overhead is likely not noticable under normal usage on modern hardware
+      and because modifications from the defaults could produce instabilites, no changes are made here. Aiming for simplicity, a journaling `ext4` filesystem is chosen over an implementation like
+      `Btrfs` or `ZFS` with more features. The latter options encompass functions similar to RAID and LVM that are not needed for our case. As a partitioning scheme, only the root directory and EFI
+      system partition are included. This practically eliminates the need for later repartitioning and does not hinder recovery thanks to the respective Arch Linux tools. Instead of its own partition,
+      a swap file will facilitate hibernate functionality while maintaining flexibility and security.**
+
    10.
    11.
    
