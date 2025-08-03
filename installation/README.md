@@ -69,7 +69,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
          <pre>station <i>name</i> connect <i>SSID</i></pre>
          <pre>station <i>name</i> connect hidden <i>SSID</i></pre>
 
-      Usually, a single line command is sufficient as well: <pre>iwctl --passphrase <i>passphrase</i> station <i>name</i> connect <i>SSID</i></pre>
+      Alternatively, a single line command is often sufficient as well: <pre>iwctl --passphrase <i>passphrase</i> station <i>name</i> connect <i>SSID</i></pre>
       The connection can be verified by pinging a known address:
       <pre>ping archlinux.org</pre>
 
