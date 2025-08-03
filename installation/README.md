@@ -25,8 +25,14 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
       > **Secure Boot is not supported and must be diabled during this phase, but can be reenabled after completing the installation.** 
 
-      Point the system to the Arch Linux installation medium. To achieve this, repeatedly press `F2` to enter the BIOS Setup or `F12` to directly set the Boot Device during the post
-      phase. Simultaneously, you must either enable `FnLock` or hold down the `Fn` key. 
+      Point the system to the Arch Linux installation medium. To achieve this, repeatedly press `F2` to enter the BIOS Setup or `F12` to directly set the Boot Device during the post phase.
+      Simultaneously, you must either hold down the `Fn` key or have `FnLock` enabled. Afterwards, select the Arch Linux installation medium when the boot menu appears and press `↵` to
+      enter the live environment.
+
+      > **To enter boot parameters, use `e` with `systemd-boot` for UEFI or `↹` with `syslinux` for BIOS systems.**
+
+      You will be logged in as root user on the first virtual console and presented with a `Zsh` prompt. To switch consoles, use `Alt` with the respective arrow keys. To edit configuration files, both
+      `nano` and `vim` are available.
 
    6.
    7.
