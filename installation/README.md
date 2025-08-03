@@ -73,8 +73,8 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       The connection can be verified by pinging a known address:
       <pre>ping archlinux.org</pre>
 
-   8. Use `timedatectl` to ensure the system clock is synchronized.
-   9.
+   8. Run `timedatectl` to ensure the system clock is synchronized.
+   9. The live system recognizes your disks and assigns them to a block device like `/dev/sda` for SATA storage, or `/dev/nvme0n1` for NVMe PCIe memory, or `/dev/mmcblk0` for SD cards.
    10.
    11.
    
