@@ -77,14 +77,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
    9.
    10.
    11.
-   12. 
-      ```
-      test
-      test
-      ```
-
-   11. test `test`
-   12. test
+   
 1. Installation
 2. Configuration
 
