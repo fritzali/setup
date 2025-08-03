@@ -21,16 +21,23 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
       To restore the USB flash drive as an empty storage device, run <code>wipefs --all /dev/disk/by-id/usb-<i>flash_drive</i></code> before repartitioning and reformatting.
 
-   4. 
-   5.
-   6. 
+   4. Boot the live environment.
+
+      > **Secure Boot is not supported and must be diabled during this phase, but can be reenabled after completing the installation.** 
+
+      Point the system to the Arch Linux installation medium. To achieve this, repeatedly press `F2` to enter the BIOS Setup or `F12` to directly set the Boot Device during the post
+      phase. Simultaneously, you must either enable `FnLock` or hold down the `Fn` key. 
+
+   6.
+   7.
+   8. 
       ```
       test
       test
       ```
 
-   7. test `test`
-   8. test
+   9. test `test`
+   10. test
 1. Installation
 2. Configuration
 
