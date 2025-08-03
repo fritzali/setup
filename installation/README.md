@@ -40,15 +40,44 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       command by omitting the path and file extension.
 
    6. Make sure the correct boot mode is set by checking the bitness: <pre>cat /sys/firmware/efi/fw_platform_size</pre>
-      - If `64` is returned by the command, your system is booted in UEFI mode with 64bit x64 architecture, which is the ideal scenario.
-      - If it returns `32` instead, the system is booted in UEFI mode with 32bit IA32 architecture. This will limit boot loader choice to those that support mixed mode booting.
-      - In case a message such as `no such file or directory` or similar is returned, the system may be booted in BIOS or CMS mode, which is undesired and should be remedied if possible.
+      1. If `64` is returned by the command, your system is booted in UEFI mode with 64bit x64 architecture, which is the ideal scenario.
+      2. If it returns `32` instead, the system is booted in UEFI mode with 32bit IA32 architecture. This will limit boot loader choice to those that support mixed mode booting.
+      3. In case a message such as `no such file or directory` or similar is returned, the system may be booted in BIOS or CMS mode, which is undesired and should be remedied if possible.
 
-   7.
-   8.
+   7. To connect to the internet, first ensure that your network interface is listed and enabled by using <pre>ip link</pre> or a command with similar functionality. For wireless, make sure
+      the card is not blocked with `rfkill` and use `iwctl` to authenticate:
+      1. Start up an interactive prompt with `iwctl` and run `help` to list all available commands.
+      2. Find out your WiFi device name,
+
+         <pre>device list</pre>
+
+      3. If the device or its adapter is turned off, turn it on,
+
+         <pre>device <i>name</i> set-property Powered on</pre>
+         <pre>adapter <i>name</i> set-property Powered on</pre>
+
+      4. Initiate a scan for networks, not producing any output,
+
+         <pre>station <i>name</i> scan</pre>
+
+      5. List all available networks,
+
+         <pre>station <i>name</i> get-networks</pre>
+
+      6. Connect to a visible or hidden network and enter the passphrase if prompted,
+
+         <pre>station <i>name</i> connect <i>SSID</i></pre>
+         <pre>station <i>name</i> connect hidden <i>SSID</i></pre>
+
+      Usually, a single line command is sufficient as well: <pre>iwctl --passphrase <i>passphrase</i> station <i>name</i> connect <i>SSID</i></pre>
+      The connection can be verified by pinging a known address:
+      <pre>ping archlinux.org</pre>
+
+   8. Use `timedatectl` to ensure the system clock is synchronized.
    9.
    10.
-   11. 
+   11.
+   12. 
       ```
       test
       test
