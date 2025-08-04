@@ -154,6 +154,8 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
        parameters instead.**
 
 2. Installation
+   1. guten
+   2. morgen
 3. Configuration
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
