@@ -147,6 +147,11 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
        <pre>mkfs.fat -F32 /dev/nvme0n1p1</pre>
        <pre>mount --mkdir /dev/nvme0n1p1 /mnt/boot</pre>
 
+   11. Enabling TRIM support on LUKS2 is achieved by running <pre>cryptsetup --allow-discards --persistent open /dev/nvme0n1p2 root</pre> or, if the device is already opened, via
+       <pre>cryptsetup --allow-discards --persistent refresh root</pre> to write the flags persistently into the LUKS header: <br><br><pre>cryptsetup luksDump /dev/nvme0n1p2 | grep Flags</pre>
+
+       > **Adding further flags overwrites any existing ones, so any preexisting flag needs to be respecified. On LUKS1 devices, this is somewhat more complicated and requires setting kernel
+       parameters instead.**
 
 2. Installation
 3. Configuration
