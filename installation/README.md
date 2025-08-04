@@ -110,7 +110,7 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
    2. <pre>mkpart BOOT fat32 0% 1GiB</pre>
    3. <pre>mkpart INSTALL ntfs 1GiB 100%</pre>
    4. <pre>quit</pre>
-   Instead of using the entire remainder of the drive, partition sizes as small as the ISO file are sufficient. Check the drive layout:
+   Instead of using the entire remainder of the drive, partition sizes as small as the ISO file are sufficient. Check the GPT layout:
    <pre>parted /dev/sde unit B print</pre>
 5. Create the required directories, format the drive and copy data into the correct structure:
    1. Mount the ISO file,
