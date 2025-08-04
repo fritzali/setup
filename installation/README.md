@@ -101,6 +101,17 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
    and comparing to the public hash list.
 
-3. Plug in your USB drive, SSD or HDD, and determine its identifier.
+3. Plug in your USB flash drive, SSD or HDD, and determine its identifier. This is probably `sda` or some iteration like `sdb` and `sdc` on your system. Make sure you select the correct device by
+   checking its properties, as otherwise critical data might be destroyed in the next step.
+4. Wipe the drive and enter a `parted` console. This will require root user privileges:
+   <pre>wipefs -a /dev/sde</pre>
+   <pre>parted /dev/sde</pre>
+   Create a GUID partition table:
+   <pre>mklabel gpt</pre>
+   <pre>mkpart BOOT fat32 0% 1GiB</pre>
+   <pre>mkpart INSTALL ntfs 1GiB 100%</pre>
+   <pre>quit</pre>
+   Instead of using the entire remainder of the drive, partition sizes as small as the ISO file are sufficient. Check the drive layout:
+   <pre>parted /dev/sde unit B print</pre>
 
 *Adapted from the [NIXAID Blog](https://nixaid.com/)*.
