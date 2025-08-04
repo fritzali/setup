@@ -111,14 +111,45 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       > **In this partitioning scheme, only the EFI partition and a root directory are accounted for. This practically eliminates the need for later repartitioning and does not hinder recoverability
       thanks to the respective Arch Linux helper tools. A swap file will facilitate hibernate functionality while maintaining flexibility and security.**
 
-   10. 
-       > Aiming for simplicity, a journaling `ext4` filesystem is chosen over copy on write alternatives. Such implementations, like
-       `ZFS` or `Btrfs` tend to encompass features similar to RAID and LVM that are not necessary in the presented case. 
+   10. After this, the partitions should be prepared for LUKS encryption, formatting and mounting.
 
-   11.
-   
-1. Installation
-2. Configuration
+       > **Due to TRIM being used, a secure erasure of the drive is omitted. While TRIM measurably enhances SSD performance thanks to sectors being marked as empty by the system on delete instead of
+       waiting for a new write request, the data stored on the disk no longer looks entirely random to outside observers. Cleared blocks can be distinguished from regions that store ordered information,
+       although the latter is still encrypted. Block patterns can be exploited as metadata to recognize the employed filesystem and possibly even file types. The TRIM command is directly forwared to the
+       lower level ciphertext device, which fills the space with either zeroes or ones. On the higher level plaintext device, discarded regions will look like random noise. Upper layer software must
+       therefore not rely on the reported ones or zeroes. On the other hand, running TRIM can protect header modifications.**
+
+       Prepare the root partition to be encrypted:
+  
+       <pre>cryptsetup -v luksFormat /dev/nvme0n1p2</pre>
+       <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
+
+       > **Never use filesystem repair software such as `fsck` directly on encrypted volumes. If such tools are not used on decrypted devices, any chance at recovering the key will be lost. Unlocking
+       with GRUB takes special attention. Different setups with TPM and Secure Boot are not attempted to keep things simple.**
+
+       Create a filesystem on the unlocked LUKS device and mount the root volume:
+  
+       <pre>mkfs.ext4 /dev/mapper/root</pre>
+       <pre>mount /dev/mapper/root /mnt</pre>
+
+       > **Aiming for simplicity, a journaling `ext4` filesystem is chosen over copy on write alternatives. Such implementations, with `ZFS` and `btrfs` being examples, tend to encompass features
+       similar to RAID and LVM that are not necessary in the present case and can even lead to complications under encrypted volumes.**
+
+       Be careful to check that the mapping works as intended:
+
+       <pre>umount /mnt</pre>
+       <pre>cryptsetup close root</pre>
+       <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
+       <pre>mount /dev/mapper/root /mnt</pre>
+
+       Following this, format the unencrypted boot partition only if it has been newly created, and mount it:
+
+       <pre>mkfs.fat -F32 /dev/nvme0n1p1</pre>
+       <pre>mount --mkdir /dev/nvme0n1p1 /mnt/boot</pre>
+
+
+2. Installation
+3. Configuration
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
