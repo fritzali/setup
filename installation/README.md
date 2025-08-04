@@ -94,24 +94,64 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
 #### Supplementary Guide
 
-1. To create a bootable Microsoft Windows medium, first [download](https://www.microsoft.com/en-us/software-download) the appropriate installation image.
+1. For creating a bootable Microsoft Windows medium, first [download](https://www.microsoft.com/en-us/software-download) the appropriate installation image.
 2. Verify the integrity by running
    
-   <pre>sha256sum Win_<i>Generation_Version_Language</i>_x64.iso</pre>
+   <pre>sha256sum <i>path</i>/<i>to</i>/Win_<i>Generation_Version_Language</i>_x64.iso</pre>
 
    and comparing to the public hash list.
 
 3. Plug in your USB flash drive, SSD or HDD, and determine its identifier. This is probably `sda` or some iteration like `sdb` and `sdc` on your system. Make sure you select the correct device by
    checking its properties, as otherwise critical data might be destroyed in the next step.
-4. Wipe the drive and enter a `parted` console. This will require root user privileges:
+4. Wipe the drive and enter a `parted` console to create a GUID partition table. This will require root user privileges:
    <pre>wipefs -a /dev/sde</pre>
    <pre>parted /dev/sde</pre>
-   Create a GUID partition table:
-   <pre>mklabel gpt</pre>
-   <pre>mkpart BOOT fat32 0% 1GiB</pre>
-   <pre>mkpart INSTALL ntfs 1GiB 100%</pre>
-   <pre>quit</pre>
+   1. <pre>mklabel gpt</pre>
+   2. <pre>mkpart BOOT fat32 0% 1GiB</pre>
+   3. <pre>mkpart INSTALL ntfs 1GiB 100%</pre>
+   4. <pre>quit</pre>
    Instead of using the entire remainder of the drive, partition sizes as small as the ISO file are sufficient. Check the drive layout:
    <pre>parted /dev/sde unit B print</pre>
+5. Create the required directories, format the drive and copy data into the correct structure:
+   1. Mount the ISO file,
+      
+      <pre>mkdir /mnt/iso</pre>
+      <pre>mount <i>path</i>/<i>to</i>/Win_<i>Generation_Version_Language</i>_x64.iso /mnt/iso/</pre>
+
+   2. Format the first partition of your drive as `FAT32` using `dosfstools` and mount it,
+  
+      <pre>mkfs.vfat -n BOOT /dev/sde1</pre>
+      <pre>mkdir /mnt/vfat</pre>
+      <pre>mount /dev/sde1 /mnt/vfat/</pre>
+
+   3. Copy everything from the ISO except the `sources` directory here,
+  
+      <pre>rsync -r --progress --exclude sources --delete-before /mnt/iso/ /mnt/vfat/</pre>
+
+   4. Copy only `boot.wim` from the `sources` directory while maintaining the same layout,
+
+      <pre>mkdir /mnt/vfat/sources</pre>
+      <pre>cp /mnt/iso/sources/boot.wim /mnt/vfat/sources/</pre>
+
+   5. Format the second partition of your drive as `NTFS` using `ntfsprogs` and mount it,
+  
+      <pre>mkfs.ntfs --quick -L INSTALL /dev/sde2</pre>
+      <pre>mkdir /mnt/ntfs</pre>
+      <pre>mount /dev/sde2 /mnt/ntfs</pre>
+
+   6. Copy everything from the ISO here,
+  
+      <pre>rsync -r --progress --delete-before /mnt/iso/ /mnt/ntfs/</pre>
+
+6. Unmount the drive and synchronize to flush the buffer:
+
+   <pre>umount /mnt/ntfs</pre>
+   <pre>umount /mnt/vfat</pre>
+   <pre>umount /mnt/iso</pre>
+   <pre>sync</pre>
+
+7. Power off the drive and remove it:
+
+   <pre>udisksctl power-off -b /dev/sde</pre>
 
 *Adapted from the [NIXAID Blog](https://nixaid.com/)*.
