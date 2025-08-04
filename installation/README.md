@@ -14,9 +14,9 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
       Determine the name of your USB flash drive by running <pre>ls -l /dev/disk/by-id/usb-*</pre> and check `lsblk` to ensure that the device is not mounted. In case any partitions are mounted, run `umount`
       on either the device or the mount point. For the sake of simplicity, there are several equivalent options using `coreutils` commands to write the image:
-      1. using the `cat` utility, <pre>cat <i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso > /dev/disk/by-id/usb-<i>flash_drive</i></pre>
-      2. using the `cp` utility, <pre>cp <i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso /dev/disk/by-id/usb-<i>flash_drive</i></pre>
-      3. using the `dd` utility, <pre>dd bs=4M if=<i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso of=/dev/disk/by-id/usb-<i>flash_drive</i><br>conv=fsync oflag=direct status=progress</pre>
+      1. Using the `cat` utility, <pre>cat <i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso > /dev/disk/by-id/usb-<i>flash_drive</i></pre>
+      2. Using the `cp` utility, <pre>cp <i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso /dev/disk/by-id/usb-<i>flash_drive</i></pre>
+      3. Using the `dd` utility, <pre>dd bs=4M if=<i>path</i>/<i>to</i>/archlinux-<i>yyyy.mm.dd</i>-x86_64.iso of=/dev/disk/by-id/usb-<i>flash_drive</i><br>conv=fsync oflag=direct status=progress</pre>
 
       > **Executing `sync` with root privileges afterwards ensures buffers are fully written to the device before you remove it.**
 
@@ -76,15 +76,45 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
    8. Run `timedatectl` to ensure the system clock is synchronized.
    9. After your disks are recognized, the live system assigns them to a block device like `/dev/sda` for SATA storage or `/dev/nvme0n1` for NVMe PCIe memory, as well as `/dev/mmcblk0` for eMMC SD
-      cards. Identify these devices by running <pre>fdisk -l</pre> before partitioning the drives.
+      cards. Identify these devices by running <pre>fdisk -l</pre> before partitioning the drives, which will erase all stored data.
 
       > **Different physical and logical sector sizes may lead to suboptimal performance, especially with LUKS encryption. As the overhead is likely not noticable under normal usage on modern hardware
-      and because modifications from the defaults could produce instabilites, no changes are made here. Aiming for simplicity, a journaling `ext4` filesystem is chosen over an implementation like
-      `Btrfs` or `ZFS` with more features. The latter options encompass functions similar to RAID and LVM that are not needed for our case. As a partitioning scheme, only the root directory and EFI
-      system partition are included. This practically eliminates the need for later repartitioning and does not hinder recovery thanks to the respective Arch Linux tools. Instead of its own partition,
-      a swap file will facilitate hibernate functionality while maintaining flexibility and security.**
+      and because modifications from the defaults could introduce instability, no changes are made.**
 
-   10.
+      An existing partition layout can be checked for by specifying a storage device: <pre>fdisk -l /dev/nvme0n1</pre>
+
+      > **If present, it can be advisable to reuse and adapt a partitioning structure in order to prevent corrupting other bootloaders or similar. To avoid impacting the durability of the SSD and because
+      TRIM will be used on the system to reduce performance degradation, no memory cell clearing is performed.**
+
+      Now, open an `fdisk` console and create a partition table on the chosen drive: <pre>fdisk /dev/nvme0n1</pre>
+
+      1. Show the help menu that lists all available commands, `m`
+      2. Initialize an empty GPT on the drive, `g`
+      3. Create a new partition, `n`
+      4. Select `1` as the default number, `↵`
+      5. Select the default starting sector, `↵`
+      6. Choose a partition size no less than 1MiB to ensure proper alignment. Here, a shift of 512MiB is used for the last sector, `+512M`
+      7. Change the partition type, `t`
+      8. Enter the alias for an EFI system, `uefi`
+      9. Create another partition, `n`
+      10. Select `2` as the default number, `↵`
+      11. Select the default first sector, `↵`
+      12. To use the remaining space, choose the default final sector, `↵`
+      13. If required, change the partition type, `t`
+      14. Enter the alias for a Linux filesystem, `linux`
+      15. Review the GPT by printing, `p`
+      16. Decide to abort, `q`
+      17. Decide to write, `w`
+
+      <br>
+
+      > **In this partitioning scheme, only the EFI partition and a root directory are accounted for. This practically eliminates the need for later repartitioning and does not hinder recoverability
+      thanks to the respective Arch Linux helper tools. A swap file will facilitate hibernate functionality while maintaining flexibility and security.**
+
+   10. 
+       > Aiming for simplicity, a journaling `ext4` filesystem is chosen. Other implementations like
+       `Btrfs` or `ZFS` encompass features similar to RAID and LVM that are not needed for this case. 
+
    11.
    
 1. Installation
