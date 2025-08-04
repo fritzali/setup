@@ -112,8 +112,8 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       thanks to the respective Arch Linux helper tools. A swap file will facilitate hibernate functionality while maintaining flexibility and security.**
 
    10. 
-       > Aiming for simplicity, a journaling `ext4` filesystem is chosen. Other implementations like
-       `Btrfs` or `ZFS` encompass features similar to RAID and LVM that are not needed for this case. 
+       > Aiming for simplicity, a journaling `ext4` filesystem is chosen over copy on write alternatives. Such implementations, like
+       `ZFS` or `Btrfs` tend to encompass features similar to RAID and LVM that are not necessary in the presented case. 
 
    11.
    
