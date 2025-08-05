@@ -154,9 +154,22 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
        parameters instead.**
 
 2. Installation
-   1. guten
-   2. morgen
+   1. Select the mirror servers used to download packages. These are defined in `/etc/pacman.d/mirrorlist` and listed with descending priority. When the live system connects to the internet,
+      the `reflector` command updates this list and sorts recently synchronized HTTPS mirrors by download rate. You may inspect the file to confirm satisfactory entries or edit accordingly.
+
+      > **No other configuration except `/etc/pacman.d/mirrorlist` gets carried over from the live environment to the installed system.**
+
+   3. Install essential packages to setup the system: <pre>pacstrap -K /mnt base linux linux-firmware</pre>
+
+      > **The vanilla stable kernel `linux` is chosen over hardened `linux-hardened` or longterm `linux-lts` options. Similarly, due to only subtle differences, the `linux-zen` fork is not used.**
+
+      Other important tools can be appended to the `pacstrap` command, although a later installation via `pacman` is also possible. Some suggestions include:
+         1. Microcode updates for the common CPU brands, `amd-ucode` or `intel-ucode`
+         2. Network manager software, `networkmanager`
+         3. Console text editors, `nano` and `vim`
+
 3. Configuration
+   1. 
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
