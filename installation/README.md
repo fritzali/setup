@@ -169,7 +169,33 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
          3. Console text editors, `nano` and `vim`
 
 3. Configuration
-   1. 
+   1. Thanks to the `udev` daemon, it is possible to have persistent block device names, which prevent many possible error sources. Nodes of drives sharing a naming scheme are added in arbitrary
+      order on boot, so it is recommended to use the UUID by setting the corresponding `fstab` flag:
+      
+      <pre>genfstab -U /mnt >> /mnt/etc/fstab</pre>
+
+      Check the resulting `/dev/etc/fstab` file and edit in case of errors.
+
+   2. Change root into the new system to directly interact with its environment, tools and configurations: <pre>arch-chroot /mnt</pre>
+   3. Set the time zone with <pre>ln -sf /usr/share/zoneinfo/<i>Region</i>/<i>City</i> /etc/localtime</pre> and generate `/etc/adjtime` by running:
+
+      <pre>hwclock --systohc</pre>
+
+      This assumes that the hardware clock is set to UTC standard time. To prevent clock drift, use an SNTP client:
+
+      <pre>systemctl start systemd-timesyncd.service</pre>
+  
+      Outside the root user, starting and enabling the service is done as follows:
+  
+      <pre>timedatectl set-ntp true</pre>
+
+      To check the service status or print verbose information, run:
+  
+      <pre>timedatectl status</pre>
+      <pre>timedatectl timesync-status</pre>
+
+      To adjust the provided time servers, edit `/etc/systemd/timesyncd.conf` or `/etc/systemd/timesyncd.conf.d/local.conf` and run <pre>timedatectl show-timesync --all</pre> to verify.
+      Any servers from the [NTP Pool Project](https://www.ntppool.org/en/) can be used.
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
