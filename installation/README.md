@@ -196,8 +196,31 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       <pre>timedatectl status</pre>
       <pre>timedatectl timesync-status</pre>
 
-      To adjust the provided time servers, edit `/etc/systemd/timesyncd.conf` or `/etc/systemd/timesyncd.conf.d/local.conf` and run <pre>timedatectl show-timesync --all</pre> to verify.
-      Any servers from the [NTP Pool Project](https://www.ntppool.org/en/) can be used.
+      To adjust the provided time servers, edit `/etc/systemd/timesyncd.conf` or `/etc/systemd/timesyncd.conf.d/local.conf` and run <pre>timedatectl show-timesync --all</pre> to verify. Any
+      servers from the [NTP Pool Project](https://www.ntppool.org/en/) can be used.
+
+   4. Next, complete the localization. To use the correct region and language specific formatting, edit `/etc/locale.gen` and uncomment the locales you will be using, such as `de_DE.UTF-8 UTF-8`
+      and `en_US.UTF-8 UTF-8` for German and English. Generate the locales:
+
+      <pre>locale-gen</pre>
+
+      Create the `/etc/locale.conf` file and set the `LANG=en_US.UTF-8` variable according to your language needs. If you changed the console keyboard layout before, enter `KEYMAP=de-latin1` in
+      `/etc/vconsole.conf` to make it persistent. If desired, set the console font in `/etc/vconsole.conf` as well with the `FONT` and `FONT_MAP` variables.
+
+   5. Configure the network for your system by first setting a consistent and identifiable hostname in `/etc/hostname` that conforms with the requirements. Next, connect to a network:
+
+      <pre>nmcli device wifi connect <i>SSID</i> password <i>password</i></pre>
+  
+      To get a list of nearby networks and connections, or for activation and deletion, run:
+  
+      <pre>nmcli device wifi list</pre>
+      <pre>nmcli connection show</pre>
+      <pre>nmcli connection up <i>name</i></pre>
+      <pre>nmcli connection delete <i>name</i></pre>
+
+      TUI and GUI frontends are also available.
+
+   6. Modify the defa `initramfs`
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
@@ -264,5 +287,7 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 7. Power off the drive and remove it:
 
    <pre>udisksctl power-off -b /dev/sde</pre>
+
+   <pre>oobe\bypassnro</pre>
 
 *Adapted from the [NIXAID Blog](https://nixaid.com/)*.
