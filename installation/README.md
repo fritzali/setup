@@ -3,7 +3,7 @@
 In the following, steps for installing an [Arch Linux](https://archlinux.org/) based system with a simple encrypted partition scheme are listed. To get the most recent firmware versions, it might be useful to
 first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to download any available updates and activate your hardware.
 
-#### Main Guide
+### Main Guide
 
 1. Preparation
    1. Acquire the ISO file and PGP signature [here](https://archlinux.org/download/).
@@ -173,7 +173,9 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
-#### Supplementary Guide
+<br>
+
+### Supplementary Guide
 
 1. For creating a bootable Microsoft Windows medium, first [download](https://www.microsoft.com/en-us/software-download) the appropriate installation image.
 2. Verify the integrity by running
