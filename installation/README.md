@@ -124,6 +124,8 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
        <pre>cryptsetup -v luksFormat /dev/nvme0n1p2</pre>
        <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
 
+       Specify the LUKS version by adding the `--type` flag after `luksFormat` with either the `luks1` or `luks2` option.
+
        > **Never use filesystem repair software such as `fsck` directly on encrypted volumes. If such tools are not used on decrypted devices, any chance at recovering the key will be lost. Unlocking
        with GRUB takes special attention. Different setups with TPM and Secure Boot are not attempted to keep things simple.**
 
