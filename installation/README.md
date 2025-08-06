@@ -288,7 +288,9 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
    <pre>udisksctl power-off -b /dev/sde</pre>
 
-8. To proceed with
+8. After booting the medium and beginning the installation process, you might want to proceed without internet connection and account creation. This way, drivers on external drives can be
+   obtained more conveniently by directly executing the installer `.exe` instead of extracting `.inf` files from your device manufacturer. To achieve this, the menu screen propting for a
+   network is modified after automatically rebooting by pressing `⇧` with `F10` and either `Fn` or `FnLock` before entering into the shell:
 
    <pre>oobe\bypassnro</pre>
 
