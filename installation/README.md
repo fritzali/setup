@@ -240,7 +240,39 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       > **Local user information is stored as plain text `account:password:UID:GID:GECOS:directory:shell` in the `/etc/passwd` file. Using the `passwd` command, only a
       placeholder is used there to indicate the existence of a hashed passphrase in `/etc/shadow` with restricted access, making it much more secure and always recommended.**
 
-   8. 
+   8. Install the `systemd-boot` boot manager that will load the kernel after startup. It is shipped with `systemd` which is a dependency of `base` itself. First make sure that the system is
+      booted into UEFI mode with UEFI variables accessible. To do so, run
+
+      <pre>efivar --list</pre>
+
+      if it is installed, or
+
+      <pre>ls /sys/firmware/efi/efivars</pre>
+
+      and check whether the directory exists to proceed with the next steps. Use
+
+      <pre>bootctl install</pre>
+
+      to copy `systemd-boot` to the ESP as well as create a UEFI boot entry and set it as first in the UEFI boot order.
+
+      > **Running `bootctl install` leads `systemd-boot` to search for the ESP in `/efi` and `/boot` per default.**
+
+      Since there are issues with `bootctl install` while `arch-chroot` is active, newer versions should use the `--variables=yes` option: <pre>bootctl --variable=yes install</pre>
+
+      Older systems can attempt the execution outside `arch-chroot` with `exit` and the `--esp-path=/mnt/boot` flag: <pre>bootctl --esp-path=/mnt/boot install</pre>
+  
+      Since this copies the EFI binaries from the ISO instead of the mounted root, odd incompatabilities might arise. To circumvent this, you can reenter `arch-chroot` and overwrite any
+      preexisting EFI files, keeping only the boot entries created by the previous command:
+  
+      <pre>arch-chroot /mnt</pre>
+      <pre>bootctl install</pre>
+
+      As a last resort, create a manual boot entry with the pointer depending on bitness:
+
+      <pre>efibootmgr --create --disk /dev/nvme0n1 --part 1 --loader '\EFI\systemd\systemd-bootx64.efi'<br>--label "Linux Boot Manager" --unicode</pre>
+      <pre>efibootmgr --create --disk /dev/nvme0n1 --part 1 --loader '\EFI\systemd\systemd-bootia32.efi'<br>--label "Linux Boot Manager" --unicode</pre>
+
+   9. Adapt the boot loader configuration to include kernel flags for the encrypted device.
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
