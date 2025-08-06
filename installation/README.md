@@ -259,9 +259,9 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
       Since there are issues with `bootctl install` while `arch-chroot` is active, newer versions should use the `--variables=yes` option: <pre>bootctl --variable=yes install</pre>
 
-      Older systems can attempt the execution outside `arch-chroot` with `exit` and the `--esp-path=/mnt/boot` flag: <pre>bootctl --esp-path=/mnt/boot install</pre>
+      Older systems can attempt the execution outside `hroot` with `exit` and the `--esp-path=/mnt/boot` flag: <pre>bootctl --esp-path=/mnt/boot install</pre>
   
-      Since this copies the EFI binaries from the ISO instead of the mounted root, odd incompatabilities might arise. To circumvent this, you can reenter `arch-chroot` and overwrite any
+      Since this copies the EFI binaries from the ISO instead of the mounted root, odd incompatabilities might arise. To circumvent this, you can reenter `chroot` and overwrite any
       preexisting EFI files, keeping only the boot entries created by the previous command:
   
       <pre>arch-chroot /mnt</pre>
