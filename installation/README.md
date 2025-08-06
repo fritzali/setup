@@ -272,7 +272,17 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       <pre>efibootmgr --create --disk /dev/nvme0n1 --part 1 --loader '\EFI\systemd\systemd-bootx64.efi'<br>--label "Linux Boot Manager" --unicode</pre>
       <pre>efibootmgr --create --disk /dev/nvme0n1 --part 1 --loader '\EFI\systemd\systemd-bootia32.efi'<br>--label "Linux Boot Manager" --unicode</pre>
 
-   9. Adapt the boot loader configuration to include kernel flags for the encrypted device.
+      > **Note that backslahes `\` are used instead of `/` as separators for the path**
+
+   9. Adapt the boot loader configuration to include kernel parameters for encryption. Edit `/boot/loader/entries/arch.conf` and add
+
+      <pre>cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root</pre>
+
+      to the `options` line. Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced accordingly.
+
+      > **The UUID in the likely preexisting `root` option should be replaced to avoid duplication conflicts, although in case of redundant entries, usually only the latter is registered
+      by the kernel. Otherwise, the order does not matter as flags are independent from each another. Further parameters like `rw` or `ro` specify read write or read only mounting options.
+      To show a splash screen and hide the boot process messages, both `splash` and `quiet` should be set.**
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
