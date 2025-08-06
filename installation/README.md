@@ -284,6 +284,11 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
       by the kernel. Otherwise, the order does not matter as flags are independent from each another. Further parameters like `rw` or `ro` specify read write or read only mounting options.
       To show a splash screen and hide the boot process messages, both `splash` and `quiet` should be set.**
 
+   10. Exit `chroot` and optionally unmount all partitions: <pre>umount -R /mnt</pre> This allows noticing any busy partitions and using `fuser` to identify the culprit. Finally, type `reboot`
+       to restart the machine, which will unmount all remaining partitions. Remember to remove the installation medium and then login with the root account.
+
+       > **General recommendations for system management and post installation directions are collected under [maintenance](../maintenance/).**
+
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
 <br>
