@@ -222,7 +222,25 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
       TUI and GUI frontends are also available.
 
-   6. Modify the defa `initramfs`
+   6. Using the default initramfs based on BusyBox, additional hooks need to be added in the correct ordering due to using encryption. With these modifications, the `/etc/mkinitcpio.conf`
+      should include something like this for its `HOOKS` variable:
+
+      <pre>base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems fsck</pre>
+
+      > **The `encrypt` hook is required for encrypted root partitions and must be placed after `udev` is called. In early userspace, keyboards are enabled after `keyboard` has been run, and it
+      can be helpful to place this before `autodetect` so that all drivers for frequently changing hardware are loaded. Overriding default settings is facilitated by the `keymap` and
+      `consolefont` hooks.**
+
+      Regenerate the initramfs:
+
+      <pre>mkinitcpio -P</pre>
+
+   7. Set a secure password for the root user to perform administrative actions with the `passwd` command.
+
+      > **Local user information is stored as plain text `account:password:UID:GID:GECOS:directory:shell` in the `/etc/passwd` file. Using the `passwd` command, only a
+      placeholder is used there to indicate the existence of a hashed passphrase in `/etc/shadow` with restricted access, making it much more secure and always recommended.**
+
+   8. 
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
