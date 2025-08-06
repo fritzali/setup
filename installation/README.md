@@ -178,6 +178,8 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
       Check the resulting `/dev/etc/fstab` file and edit in case of errors.
 
+      > **The contained static information about present filesystems will include the identifier, directory and type among other entries.**
+
    2. Change root into the new system to directly interact with its environment, tools and configurations: <pre>arch-chroot /mnt</pre>
    3. Set the time zone with <pre>ln -sf /usr/share/zoneinfo/<i>Region</i>/<i>City</i> /etc/localtime</pre> and generate `/etc/adjtime` by running:
 
