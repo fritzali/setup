@@ -288,6 +288,8 @@ first install [Microsoft Windows](https://www.microsoft.com/en-us/windows) to do
 
    <pre>udisksctl power-off -b /dev/sde</pre>
 
+8. To proceed with
+
    <pre>oobe\bypassnro</pre>
 
 *Adapted from the [NIXAID Blog](https://nixaid.com/)*.
