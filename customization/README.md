@@ -2,7 +2,6 @@
 
 #### Interface
 
-- [systemd-boot]() Boot Loader
 - [greetd]() Login Manager
 - [hyprlock]() Greeter & Screen Lock
 - [hyprland]() Compositor & Window Manager
