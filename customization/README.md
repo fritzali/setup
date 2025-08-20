@@ -24,14 +24,14 @@
 
 #### Typesetting
 
-- [texlive]() LaTeX Distribution
+- [texlive](https://aur.archlinux.org/packages/texlive-installer) LaTeX Distribution
 - [libreoffice](https://archlinux.org/packages/extra/x86_64/libreoffice-fresh/) Office Suite
 - [inkscape](https://archlinux.org/packages/extra/x86_64/inkscape/) Vector Graphics
 
 #### Development
 
 - [neovim](https://archlinux.org/packages/extra/x86_64/neovim/) | [vscodium](https://aur.archlinux.org/packages/vscodium) Text Editor & IDE
-- [mamba]() | [conda]() Programming Environment
+- [mamba](https://aur.archlinux.org/packages/miniforge) | [conda](https://aur.archlinux.org/packages/miniforge) Programming Environment
 
 #### Photography
 
