@@ -36,6 +36,11 @@
 
 #### Photography
 
-- [gimp]() Image Editor
+- [gimp]() | [imagemagick]() Image Editor
 - [darktable]() Lighttable & Darkroom
 - [siril]() Astrophotography
+
+#### Media
+
+- [mpv]() | [vlc]() Multimedia Player
+- [pulseaudio]() Sound Server
