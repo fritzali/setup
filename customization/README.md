@@ -31,7 +31,7 @@
 
 #### Development
 
-- [neovim]() | [vscodium]() Text Editor
+- [neovim]() | [vscodium]() Text Editor & IDE
 - [mamba]() | [conda]() Programming Environment
 
 #### Photography
