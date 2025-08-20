@@ -2,24 +2,24 @@
 
 #### Interface
 
-- [greetd]() Login Manager
-- [hyprlock]() Greeter & Screen Lock
-- [hyprland]() Compositor & Window Manager
-- [waybar]() Statusbar
+- [greetd](https://archlinux.org/packages/extra/x86_64/greetd/) Login Manager
+- [hyprlock](https://archlinux.org/packages/extra/x86_64/hyprlock/) Greeter & Screen Lock
+- [hyprland](https://archlinux.org/packages/extra/x86_64/hyprland/) Compositor & Window Manager
+- [waybar](https://archlinux.org/packages/extra/x86_64/waybar/) Statusbar
 
 #### Utilities
 
-- [bash]() | [zsh]() Unix Shell
-- [git]() Version Control
-- [alacritty]() Terminal Emulator
-- [paru]() AUR Helper & Wrapper
-- [yazi]() File Manager
-- [hyprpicker]() Color Picker
-- [hyprpaper]() Wallpaper
+- [bash](https://archlinux.org/packages/core/x86_64/bash/) | [zsh](https://archlinux.org/packages/extra/x86_64/zsh/) Unix Shell
+- [git](https://archlinux.org/packages/extra/x86_64/git/) Version Control
+- [alacritty](https://archlinux.org/packages/extra/x86_64/alacritty/) Terminal Emulator
+- [paru](https://aur.archlinux.org/packages/paru) AUR Helper & Wrapper
+- [yazi](https://archlinux.org/packages/extra/x86_64/yazi/) File Manager
+- [hyprpicker](https://archlinux.org/packages/extra/x86_64/hyprpicker/) Color Picker
+- [hyprpaper](https://archlinux.org/packages/extra/x86_64/hyprpaper/) Wallpaper
 
 #### Internet
 
-- [firefox]() | [chromium]() Browser
+- [firefox](987) | [chromium]() Browser
 - [thunderbird]() Mail Client
 
 #### Typesetting
