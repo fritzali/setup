@@ -286,7 +286,8 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
    10. Exit `chroot` and optionally unmount all partitions: <pre>umount -R /mnt</pre> This allows noticing any busy partitions and using `fuser` to identify the culprit. Finally, type `reboot`
        to restart the machine, which will unmount all remaining partitions. Remember to remove the installation medium and then login with the root account.
 
-       > **General recommendations for system management and post installation directions are collected under [maintenance](../maintenance/).**
+       > **General recommendations for system management and post installation directions are collected under [maintenance](../maintenance/). Some useful packages for different tasks are listed
+       in [customization](../customization).**
 
 *Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
 
