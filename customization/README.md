@@ -19,27 +19,27 @@
 
 #### Internet
 
-- [firefox](987) | [chromium]() Browser
-- [thunderbird]() Mail Client
+- [firefox](https://archlinux.org/packages/extra/x86_64/firefox/) | [chromium](https://archlinux.org/packages/extra/x86_64/chromium/) Browser
+- [thunderbird](https://archlinux.org/packages/extra/x86_64/thunderbird/) Mail Client
 
 #### Typesetting
 
 - [texlive]() LaTeX Distribution
-- [libreoffice]() Office Suite
-- [inkscape]() Vector Editor
+- [libreoffice](https://archlinux.org/packages/extra/x86_64/libreoffice-fresh/) Office Suite
+- [inkscape](https://archlinux.org/packages/extra/x86_64/inkscape/) Vector Graphics
 
 #### Development
 
-- [neovim]() | [vscodium]() Text Editor & IDE
+- [neovim](https://archlinux.org/packages/extra/x86_64/neovim/) | [vscodium](https://aur.archlinux.org/packages/vscodium) Text Editor & IDE
 - [mamba]() | [conda]() Programming Environment
 
 #### Photography
 
-- [gimp]() | [imagemagick]() Image Editor
-- [darktable]() Lighttable & Darkroom
-- [siril]() Astrophotography
+- [gimp](https://archlinux.org/packages/extra/x86_64/gimp/) | [imagemagick](https://archlinux.org/packages/extra/x86_64/imagemagick/) Image Editor
+- [darktable](https://archlinux.org/packages/extra/x86_64/darktable/) Lighttable & Darkroom
+- [siril](https://aur.archlinux.org/packages/siril) Astrophotography Processing
 
 #### Media
 
-- [mpv]() | [vlc]() Multimedia Player
-- [pulseaudio]() Sound Server
+- [mpv](https://archlinux.org/packages/extra/x86_64/mpv/) | [vlc](https://archlinux.org/packages/extra/x86_64/vlc/) Multimedia Player
+- [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) Sound Server
