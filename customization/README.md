@@ -43,4 +43,4 @@
 #### Media
 
 - [mpv](https://archlinux.org/packages/extra/x86_64/mpv/) | [vlc](https://archlinux.org/packages/extra/x86_64/vlc/) Multimedia Player
-- [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) Sound Server
+- [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) | [pipewire](https://archlinux.org/packages/?name=pipewire) Sound Server
