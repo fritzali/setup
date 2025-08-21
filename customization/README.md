@@ -17,8 +17,9 @@
 - [hyprpicker](https://archlinux.org/packages/extra/x86_64/hyprpicker/) Color Picker
 - [hyprpaper](https://archlinux.org/packages/extra/x86_64/hyprpaper/) Wallpaper
 - [sudo](https://archlinux.org/packages/core/x86_64/sudo/) | [doas](https://archlinux.org/packages/extra/x86_64/opendoas/) Privilege Elevation
-- [nftables](https://archlinux.org/packages/?name=nftables) Firewall
-- [libinput](https://archlinux.org/packages/?name=libinput) Pointing Device
+- [nftables](https://archlinux.org/packages/extra/x86_64/nftables/) Firewall
+- [libinput](https://archlinux.org/packages/extra/x86_64/libinput/) Pointing Device
+- [cups](https://archlinux.org/packages/extra/x86_64/cups/) Printing
 
 #### Internet
 
@@ -45,4 +46,4 @@
 #### Media
 
 - [mpv](https://archlinux.org/packages/extra/x86_64/mpv/) | [vlc](https://archlinux.org/packages/extra/x86_64/vlc/) Multimedia Player
-- [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) | [pipewire](https://archlinux.org/packages/?name=pipewire) Sound Server
+- [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) | [pipewire](https://archlinux.org/packages/extra/x86_64/pipewire/) Sound Server
