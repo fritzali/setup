@@ -6,6 +6,7 @@
 - [hyprlock](https://archlinux.org/packages/extra/x86_64/hyprlock/) Greeter & Screen Lock
 - [hyprland](https://archlinux.org/packages/extra/x86_64/hyprland/) Compositor & Window Manager
 - [waybar](https://archlinux.org/packages/extra/x86_64/waybar/) Statusbar
+- [wofi](https://archlinux.org/packages/extra/x86_64/wofi/) | [rofi](https://archlinux.org/packages/extra/x86_64/rofi/) Application Launcher
 
 #### Utilities
 
