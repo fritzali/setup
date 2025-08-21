@@ -17,6 +17,7 @@
 - [hyprpicker](https://archlinux.org/packages/extra/x86_64/hyprpicker/) Color Picker
 - [hyprpaper](https://archlinux.org/packages/extra/x86_64/hyprpaper/) Wallpaper
 - [sudo](https://archlinux.org/packages/core/x86_64/sudo/) | [doas](https://archlinux.org/packages/extra/x86_64/opendoas/) Privilege Elevation
+- [nftables](https://archlinux.org/packages/?name=nftables) Firewall
 
 #### Internet
 
