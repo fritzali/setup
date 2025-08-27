@@ -10,6 +10,8 @@
 
 #### Updates & Upgrades
 
+<br><br>
+
 ### Packages
 
 #### Manager
@@ -22,6 +24,8 @@
 
 #### AUR
 
+<br><br>
+
 ### Booting
 
 #### Hardware Recognition
@@ -31,6 +35,8 @@
 #### Retaining Messages
 
 #### Function Lock
+
+<br><br>
 
 ### User Graphics
 
@@ -44,6 +50,8 @@
 
 #### User Directories
 
+<br><br>
+
 ### Power Management
 
 #### ACPI Events
@@ -54,9 +62,13 @@
 
 #### Suspend & Hibernate
 
+<br><br>
+
 ### Multimedia
 
 #### Sound System
+
+<br><br>
 
 ### Networking
 
@@ -66,6 +78,8 @@
 
 #### Network Shares
 
+<br><br>
+
 ### Input Devices
 
 #### Keyboard Layout
@@ -73,6 +87,8 @@
 #### Mouse Buttons
 
 #### Touchpads
+
+<br><br>
 
 ### Optimization
 
@@ -82,6 +98,8 @@
 
 #### TRIM
 
+<br><br>
+
 ### System Services
 
 #### File Index & Search
@@ -90,11 +108,15 @@
 
 #### Printing
 
+<br><br>
+
 ### Appearance
 
 #### Fonts
 
 #### Themes
+
+<br><br>
 
 ### Console Improvements
 
