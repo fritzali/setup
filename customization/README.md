@@ -23,6 +23,7 @@
 - [nftables](https://archlinux.org/packages/extra/x86_64/nftables/) Firewall
 - [libinput](https://archlinux.org/packages/extra/x86_64/libinput/) Pointing Device
 - [cups](https://archlinux.org/packages/extra/x86_64/cups/) Printing
+- [libvirt](https://archlinux.org/packages/extra/x86_64/libvirt/) KVM & QEMU Virtualization
 
 #### Internet
 
