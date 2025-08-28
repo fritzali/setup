@@ -1,4 +1,6 @@
-## Package List
+## Customization
+
+### Package List
 
 #### Interface
 
@@ -48,3 +50,7 @@
 
 - [mpv](https://archlinux.org/packages/extra/x86_64/mpv/) | [vlc](https://archlinux.org/packages/extra/x86_64/vlc/) Multimedia Player
 - [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) | [pipewire](https://archlinux.org/packages/extra/x86_64/pipewire/) Sound Server
+
+<br><br>
+
+### Essential Utilities
