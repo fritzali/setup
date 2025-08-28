@@ -53,4 +53,39 @@
 
 <br><br>
 
-### Essential Utilities
+### Core Utilities
+
+#### Essentials
+
+- `cd` change directory
+- `ls` list directory
+- `cat` concatenate file
+- `mkdir` make directory
+- `rmdir` remove directory
+- `rm` remove file | directory
+- `cp` copy file | directory
+- `mv` move file | directory
+- `ln` make hard | symbolic links
+- `chown` change file owner | group
+- `chmod` change file permissions
+- `dd` convert | copy file
+- `df` report filesystem disk space usage
+- `du` estimate file | directory disk space usage
+- `tar` archiver
+- `less` terminal pager
+- `find` search file | directory
+- `diff` compare files
+- `grep` print lines matching pattern
+- `sed` stream editor
+- `awk` pattern scanning | processing language
+- `dmesg` print | control kernel control buffer
+- `lsblk` list block devices
+- `mount` mount filesystem
+- `umount` unmount filesystem
+- `su` substitute user
+- `kill` terminate process
+- `pgrep` search process matching name | attributes
+- `ps` show process information
+- `free` display free | used memory amount
+
+#### Nonessentials
