@@ -58,15 +58,15 @@
 #### Essentials
 
 - `cd` change directory
-- `ls` list directory
+- `ls` | `tree` list directory
 - `cat` concatenate file
 - `mkdir` make directory
 - `rmdir` remove directory
 - `rm` remove file | directory
 - `cp` copy file | directory
 - `mv` move file | directory
-- `ln` make hard | symbolic links
-- `chown` change file owner | group
+- `ln` | `sln` make hard | symbolic links
+- `chown` | `chgrp` change file owner | group
 - `chmod` change file permissions
 - `dd` convert | copy file
 - `df` report filesystem disk space usage
@@ -82,10 +82,36 @@
 - `lsblk` list block devices
 - `mount` mount filesystem
 - `umount` unmount filesystem
-- `su` substitute user
-- `kill` terminate process
-- `pgrep` search process matching name | attributes
-- `ps` show process information
-- `free` display free | used memory amount
+- `su` | `sudo` | `doas` substitute user
+- `kill` | `pkill` | `killall` terminate process
+- `pgrep` | `pidof` search process matching name | attributes
+- `ps` | `top` show process information
+- `free` | `top` display free | used memory amount
 
 #### Nonessentials
+
+- `alias` define | display alias
+- `type` | `which` print command type
+- `time` time command
+- `tee` read input | write output
+- `mktemp` make temporary file | directory
+- `mknod` create named pipe | device node
+- `truncate` | `fallocate` shrink | extend file size
+- `basenc` encoding input | output
+- `cut` | `colrm` print selected line parts
+- `tr` | `uconv` translate | delete characters
+- `od` | `hexdump` octal | other format file dump
+- `sort` sort lines
+- `uniq` report | omit repeated lines
+- `comm` compare sorted files
+- `head` output first file part
+- `join` | `combine` common field line joining
+- `shasum` calculate input | output cryptography hash functions
+- `tail` output last file part
+- `wc` print newline | word | byte count
+- `strings` print binary file printable characters
+- `column` columnate file | grid
+- `xargs` combine | template input | output arguments command invocation
+- `iconv` | `recode` convert character encodings
+- `uudecode` encode file into email friendly text
+- `file` guess filetype
