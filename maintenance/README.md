@@ -135,3 +135,7 @@
 #### Pointer Support
 
 #### Session Attachments
+
+<br><br>
+
+*Adapted from the [Arch Wiki](https://wiki.archlinux.org/)*.
