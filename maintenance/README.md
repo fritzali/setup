@@ -70,11 +70,11 @@ achieves just that.
 
 There are some more things to keep in mind after a name change:
 
-- Update your `/etc/sudoers` to reflect new usernames via the `visudo` command as root
-- Adjust crontabs by renaming the user file in `/var/spool/cron` from the old to the new name before opening `crontab` with the `e` flag to change any relevant
+- update your `/etc/sudoers` to reflect new usernames via the `visudo` command as root
+- adjust crontabs by renaming the user file in `/var/spool/cron` from the old to the new name before opening `crontab` with the `e` flag to change any relevant
   paths and have it set the file permissions accordingly
-- Avoid problems with shell scripts by using the `~` or `$HOME` variables for the home directory location
-- Edit those configuration files in `/etc/` that rely on absolute paths, and find such files with
+- avoid problems with shell scripts by using the `~` or `$HOME` variables for the home directory location
+- edit those configuration files in `/etc/` that rely on absolute paths, and find such files with
 
   <pre>grep -r <i>oldname</i> *</pre>
 
@@ -96,7 +96,15 @@ Change the login shell:
 
 <pre>usermod -s <i>shell</i> <i>username</i></pre>
 
+As for the database, local user information is stored as plain text in `/etc/passwd` with each line referring to a different user:
 
+<pre><i>account:password:UID:GID:GECOS:directory:shell</i></pre>
+
+- `account` is the username and cannot be blank
+- `password` is the user password and should only point to the shadowed file
+- `UID` is the numerical user identifier
+- `GID` is the numerical group identifier
+- `GECOS` is an optional field used for informational purposes and usually contains the full username
 
 #### Wildcards
 
