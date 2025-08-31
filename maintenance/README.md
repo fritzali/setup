@@ -23,7 +23,30 @@ To change the default values for newly created users, edit the `/etc/default/use
 
 <pre>useradd --defaults</pre>
 
-command. For example, the variable <code>SHELL=/usr/bin/<i>shell</i></code> sets the global default login shell.
+command. For example, the variable <code>SHELL=/usr/bin/<i>shell</i></code> sets the global default login shell. For the login to function, said shell must be available in
+the `/etc/shells` file, which can be checked by running:
+
+<pre>chsh -l</pre>
+
+New user home directories can also be automatically populated with certain files, specified by adding them to the `/etc/skel` directory.
+
+> **If an invalid shell is selected, the PAM module will deny the login request.**
+
+Adding a user is done as follows:
+
+<pre>useradd -m -G <i>groups</i> -s <i>shell</i> <i>username</i></pre>
+
+Here, the `m` flag creates the <code>/home/<i>username</i></code> directory, which is owned by the new user. After `G` follows a comma separated list of supplementary groups
+to which the new user also belongs, other than the default initial group of the same name. For a different initial group, use the `g` flag, which is however not recommended.
+With the `s` parameter, the path to a login shell must be entered. The `h` flag prints all available options. 
+
+> **If the login shell is intended to be disabled, for example when creating user accounts for specific services, the path `/usr/bin/nologin` may be used to refuse a login.**
+
+After creating the new user, a password should be set using the
+
+<pre>passwd <i>username</i></pre>
+
+command. 
 
 #### Permissions & Ownership
 
