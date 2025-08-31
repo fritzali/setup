@@ -105,6 +105,14 @@ As for the database, local user information is stored as plain text in `/etc/pas
 - `UID` is the numerical user identifier
 - `GID` is the numerical group identifier
 - `GECOS` is an optional field used for informational purposes and usually contains the full username
+- `directory` is used by the login command to set the home environment variable
+- `shell` is the path to the user default command shell
+
+Verifying the integrity of the user database is achieved via the
+
+<pre>pwck -s</pre>
+
+command, with the `s` flag sorting by `UID` at the same time for ease of comparison.
 
 #### Wildcards
 
