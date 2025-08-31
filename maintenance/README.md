@@ -101,7 +101,7 @@ As for the database, local user information is stored as plain text in `/etc/pas
 <pre><i>account:password:UID:GID:GECOS:directory:shell</i></pre>
 
 - `account` is the username and cannot be blank
-- `password` is the user password and should only point to the shadowed file
+- `password` is the user password and should only point to the associated shadowed file
 - `UID` is the numerical user identifier
 - `GID` is the numerical group identifier
 - `GECOS` is an optional field used for informational purposes and usually contains the full username
@@ -112,7 +112,51 @@ Verifying the integrity of the user database is achieved via the
 
 <pre>pwck -s</pre>
 
-command, with the `s` flag sorting by `UID` at the same time for ease of comparison.
+command, with the `s` flag sorting by `UID` at the same time for ease of comparison. These checks can be automated with the `shadow.timer` that starts `shadow.service` in
+daily intervals to run `pwck` and `grpck` for both password and group files. If discrepancies are reported, the `vigr` and `vipw` commands can edit groups and users,
+respectively, while locking the databases for editing as an extra margin of protection. Security can also be improved by packages migrating from sysusers to fully locked
+system accounts that enable locked and expired status. These users need to be modified manually.
+
+Similar to users, groups are defined in `/etc/group` as well as the accompanying but rarely used shadowed file, and are managed as shown in the following examples. Display
+membership with the
+
+<pre>groups <i>user</i></pre>
+
+command and list additional details by running:
+
+<pre>id <i>user</i></pre>
+
+To list all groups on the system:
+
+<pre>cat /etc/group</pre>
+
+Create new groups:
+
+<pre>groupadd <i>group</i></pre>
+
+> **If the user is currently logged in, they must log out and in again for changes to take effect.**
+
+Add users to a group using the `a` option:
+
+<pre>gpasswd -a <i>user</i> <i>group</i></pre>
+
+Alternatively, add a user to additional groups:
+
+<pre>usermod -aG <i>groups</i> <i>username</i></pre>
+
+> **If the `a` flag is omitted, the user will be removed from any previous groups not listed in the command.**
+
+Modify groups, such as renaming with the `n` option:
+
+<pre>groupmod -n <i>newgroup</i> <i>oldgroup</i></pre>
+
+This will change the name but not the identifier, meaning ownership is transferred. To delete existing groups:
+
+<pre>groupdel <i>group</i></pre>
+
+To remove users from a group:
+
+<pre>gpasswd -d <i>user</i> <i>group</i></pre>
 
 #### Wildcards
 
