@@ -24,8 +24,9 @@
 - [libinput](https://archlinux.org/packages/extra/x86_64/libinput/) Pointing Device
 - [cups](https://archlinux.org/packages/extra/x86_64/cups/) Printing
 - [libvirt](https://archlinux.org/packages/extra/x86_64/libvirt/) KVM & QEMU Virtualization
-- [cronie](https://archlinux.org/packages/extra/x86_64/cronie/) cron job scheduler
-- [samba](https://archlinux.org/packages/extra/x86_64/samba/) file sharing server
+- [cronie](https://archlinux.org/packages/extra/x86_64/cronie/) Cron Job Scheduler
+- [samba](https://archlinux.org/packages/extra/x86_64/samba/) File Sharing Server
+- [polkit](https://archlinux.org/packages/extra/x86_64/polkit/) Policy Toolkit
 
 #### Internet
 
