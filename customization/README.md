@@ -25,6 +25,7 @@
 - [cups](https://archlinux.org/packages/extra/x86_64/cups/) Printing
 - [libvirt](https://archlinux.org/packages/extra/x86_64/libvirt/) KVM & QEMU Virtualization
 - [cronie](https://archlinux.org/packages/extra/x86_64/cronie/) cron job scheduler
+- [samba](https://archlinux.org/packages/extra/x86_64/samba/) file sharing server
 
 #### Internet
 
