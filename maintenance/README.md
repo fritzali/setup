@@ -72,8 +72,11 @@ There are some more things to keep in mind after a name change:
 
 - Update your `/etc/sudoers` to reflect new usernames via the `visudo` command as root
 - Adjust crontabs by renaming the user file in `/var/spool/cron` from the old to the new name before opening `crontab` with the `e` flag to change any relevant
-  paths and have it adjust the file permissions accordingly
-- 
+  paths and have it set the file permissions accordingly
+- Avoid problems with shell scripts by using the `~` or `$HOME` variables for the home directory location
+- Edit those configuration files in `/etc/` that rely on absolute paths, and find such files with
+
+  <pre>grep -r <i>oldname</i> *</pre>
 
 #### Wildcards
 
