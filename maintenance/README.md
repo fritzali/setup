@@ -46,7 +46,36 @@ After creating the new user, a password should be set using the
 
 <pre>passwd <i>username</i></pre>
 
-command. 
+command. Creating a system user with specified user and group identifiers would look something like this:
+
+<pre>useradd -r -u <i>uid</i> -g <i>gid</i> -s /usr/bin/nologin <i>username</i></pre>
+
+Editing an exisiting user account is also possible. Run
+
+<pre>usermod -d /<i>new</i>/<i>home</i> -m <i>username</i></pre>
+
+to change the home directory and move all content there. For programs with hardcoded paths, it can be useful to symlink from the previous to the new location:
+
+<pre>ln -s /<i>new</i>/<i>home</i>/ /<i>former</i>/<i>home</i></pre>
+
+> **Make sure there is no trailing `/` after the <code>/<i>former</i>/<i>home</i></code> path.**
+
+In case a login name needs to be changed,
+
+<pre>usermod -l <i>newname</i> <i>oldname</i></pre>
+
+achieves just that.
+
+> **Be certain that you are not logged in as the user whose name you are about to change.**
+
+There are some more things to keep in mind after a name change:
+
+- Update your `/etc/sudoers` to reflect new usernames via the `visudo` command as root
+- Adjust crontabs by renaming the user file in `/var/spool/cron` from the old to the new name before opening `crontab` with the `e` flag to change any relevant
+  paths and have it adjust the file permissions accordingly
+- 
+
+#### Wildcards
 
 #### Permissions & Ownership
 
@@ -54,7 +83,7 @@ command.
 
 #### Daemons
 
-#### Updates & Upgrades
+#### Updates & Upgrades & Backup
 
 <br><br>
 
