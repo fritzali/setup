@@ -46,11 +46,11 @@ After creating the new user, a password should be set using the
 
 <pre>passwd <i>username</i></pre>
 
-command. Creating a system user with specified user and group identifiers would look something like this:
+command. Creating a system user, useful for using permissions to harden the system and isolate services, with specified user and group identifiers would look something like this:
 
 <pre>useradd -r -u <i>uid</i> -g <i>gid</i> -s /usr/bin/nologin <i>username</i></pre>
 
-Editing an exisiting user account is also possible. Run
+Editing an existing user account is also possible. Run
 
 <pre>usermod -d /<i>new</i>/<i>home</i> -m <i>username</i></pre>
 
@@ -77,6 +77,26 @@ There are some more things to keep in mind after a name change:
 - Edit those configuration files in `/etc/` that rely on absolute paths, and find such files with
 
   <pre>grep -r <i>oldname</i> *</pre>
+
+The following lists some more examples for user management actions. To interactively enter information for the GECOS comment, type:
+
+<pre>chfn <i>username</i></pre>
+
+A user password can be marked as expired, prompting the creation of a new one for the next login:
+
+<pre>chage -d 0 <i>username</i></pre>
+
+Delete accounts with the
+
+<pre>userdel -r <i>username</i></pre>
+
+command, where the `r` option specifies that the user home directory and mail spool should also be deleted.
+
+Change the login shell:
+
+<pre>usermod -s <i>shell</i> <i>username</i></pre>
+
+
 
 #### Wildcards
 
