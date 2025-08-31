@@ -203,7 +203,18 @@ according to the active session. There are still some exceptions, especially for
 
 #### Wildcards
 
+Standard globbing patterns are widely used as placeholders with different functions:
+
+- `?` represents any single character or number
+- `*` represents any number of characters
+- `[]` specifies a range `-` or list `,` to match
+- `{}` expands a list `,` where each item has to be a filename or wildcard
+- `[!]` specifies a range `-` or list `,` to exclude
+- `\` and `''` are escape characters that protect special symbols
+
 #### Permissions & Ownership
+
+
 
 #### Security
 
