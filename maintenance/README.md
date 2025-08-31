@@ -158,6 +158,49 @@ To remove users from a group:
 
 <pre>gpasswd -d <i>user</i> <i>group</i></pre>
 
+> **Arch Linux defaults of group files are created as `.pacnew` files by new releases of the `filesystem` package. Unless Pacman outputs related messages for action, these
+`.pacnew` files can, and should, be disregarded or removed.**
+
+This last section explains the purpose of some essential groups from the `filesystem` package. There are many other groups, which will be created with correct identifiers
+when the relevant package is installed.
+
+> **A later removal of a package does not remove the automatically created user and group again. This is intentional because any files created during its usage would
+otherwise be left orphaned as a potential security risk.**
+
+User Groups:
+
+- `adm` has full read access to journal files, commonly gives access to protected logs, administration group
+- `ftp` has access to files served by FTP servers, affects `/srv/ftp`
+- `games` has access to some game software, affects `/var/games`
+- `http` has access to files served by HTTP servers, affects `/srv/http`
+- `log` has access to log files in `/var/log/`
+- `rfkill` has the right to control wireless devices power state, affects `/dev/rfkill`
+- `sys` has right to administer printers in CUPS
+- `wheel` has the right to administer printers in CUPS and full read access to journal files, commonly gives privileges to perform administrative actions, can give access to
+  `sudo` and `su` utilities although not as default, administration group
+
+System Groups:
+
+- `dbus` is used internally by `dbus`
+- `locate` is used by `plocate`
+- `nobody` is an unprivileged group
+- `proc` is authorized to learn processes information otherwise prohibited by the `hidepid` mount option of the proc filesystem, must be explicitly set with the `gid` mount
+  option, affects <code>/proc/<i>pid</i>/</code>
+- `root` is for complete system administration
+
+Legacy Groups:
+
+- `audio` grants direct access to sound hardware, required for remote ALSA or OSS sessions, otherwise not recommended
+- `disk` grants access to block devices not affected by other groups
+- `input` grants access to input devices
+- `kvm` grants access to virtual machines using KVM
+- `optical` grants access to optical devices like CD or DVD drives
+- `storage` grants access to removable drives, enables mounting storage devices, required for manipulating some devices via `udisks` or `udisksctl`
+- `video` grants acces to video capture devices, 2D and 3D hardware acceleration, framebuffer
+
+> **Before `systemd` was introduced, users had to be added manually to these. Now, `udev` marks devices with a `uaccess` tag and `logind` assigns user permissions dynamically
+according to the active session. There are still some exceptions, especially for remote access.**
+
 #### Wildcards
 
 #### Permissions & Ownership
