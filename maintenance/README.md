@@ -228,7 +228,7 @@ command, which displays the total number of blocks as the first line and proceed
 - `permissions` defines who can do what with the file, as is explained below
 - `linkcount` gives the number of links contained
   - for regular files, this is just the link to itself, so always `1`
-  - for directories, which are files themselves, it is at least `2` for the self `.` and the parent `..` directory, with each subdirectory incrementing the counter
+  - for directories, which are files themselves, it is at least `2` for the self `.` and the parent `..` directory, with each subdirectory incrementing the counter by one
 - `owner` is the owning user account name
 - `group` is the owning group name
 - `size` gives the amount of storage reserved
