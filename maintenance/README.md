@@ -214,7 +214,11 @@ Standard globbing patterns are widely used as placeholders with different functi
 
 #### Permissions & Ownership
 
-
+One of the core unifying ideas behind UNIX operating systems is the mantra that almost everything is a file. Files provide a common abstraction for documents, directories,
+storage, networking, input and output devices, all exposed through the same API and beholden to the same set of basic commands. For example, on many systems, audio recording
+and playback can be done via the `cat` utility, just as easily as piping content to standard out:
+<pre>cat /dev/audio > <i>file</i></pre>
+<pre>cat <i>file</i> > /dev/audio</pre>
 
 #### Security
 
