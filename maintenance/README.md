@@ -243,6 +243,46 @@ command, which displays the total number of blocks as the first line and proceed
 > **With the `a` flag, running `ls` shows hidden files which have names starting with `.` and are otherwise excluded. The `h` option makes the size formats human readable.
 And the `l` parameter makes it so that the long format is output instead of just the names in a shortened list.**
 
+Now, the structure of the mode string that defines the file permissions can be split into five fields:
+
+- The first field comprises one character and indicates the file type, with POSIX specifying the following options:
+  - regular file, `-`
+  - directory, `d`
+  - symbolic link, `l`
+  - FIFO pipe special, `p`
+  - block special, `b`
+  - character special, `c`
+  - socket, `s`
+- The second, third and fourth fields comprise three characters each, with every character triple indicating the permissions for the owner, group and others, respectively:
+  - The first character defines read permissions:
+    - `-` means that the file cannot be read or that the directory contents cannot be shown
+    - `r` means that the file can be read or that the directory contents can be shown
+  - The second character defines write permissions:
+    - `-` means that the file or the directory contents cannot be modified
+    - `w` means that the file or the directory contents can be modified, for directories this enables creating new files or renaming and deleting existing ones, and only
+      has an effect if the execute permission is also set
+  - The third character defines the execute permissions:
+    - `-` means that the file cannot be executed or that the directory cannot be accessed with `cd`
+    - `x` means that the file can be exectued or that the directory can be accessed with `cd`
+    - `s` sets the bit for `setuid` in the user triad or `setgid` in the group triad to run binary executables under owner filesystem permissions, with no effect in the
+      others triad, and also implies `x` is set
+    - `S` does the same as `s` but without setting `x`
+    - `t` sets the sticky bit in the others triad, with no effect otherwise, to protect directories from hijacking by deleting, overwriting of renaming files from anyone
+      but the file or directory owner, and also implies that `x` is set
+    - `T` does the same as `t` but without setting `x`
+- The fifth field comprises one character and indicates alternate access methods, if not left empty with a space:
+  - `.` marks a file with a security context but no further alternate access method
+  - `+` marks a file with any other combination of alternate access methods
+
+Some examples:
+
+- `drwxr-xr-x` describes a directory whose owner can view and modify its content, as well as use the `cd` command, whereas the group and others can only view and `cd` into
+  it without making modifications, and no alternate access methods being available for the file
+- `-rw-r--r--` describes a regular file whose owner can read and write, but is not able to execute it, whose group and others can only read its contents, and for which no
+  alternate access method is available
+
+
+
 #### Security
 
 #### Daemons
