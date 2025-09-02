@@ -237,7 +237,7 @@ command, which displays the total number of blocks as the first line and proceed
 - `moddate` is the date on which the file was last modified and takes up three columns
   - first, the month is displayed as `MMM`
   - second, the day is displayed as `D`
-  - third, if the date is in the same calendar, the time is displayed as `hh:mm` or else, the year is displayed as `YYYY`
+  - third, if the date is in the same calendar year, the time is displayed as `hh:mm` or else, the year is displayed as `YYYY`
 - `name` is the file identifier
 
 > **With the `a` flag, running `ls` shows hidden files which have names starting with `.` and are otherwise excluded. The `h` option makes the size formats human readable.
