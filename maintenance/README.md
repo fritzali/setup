@@ -219,6 +219,29 @@ storage, networking, input and output devices, all exposed through the same API 
 and playback can be done via the `cat` utility, just as easily as piping content to standard out:
 <pre>cat /dev/audio > <i>file</i></pre>
 <pre>cat <i>file</i> > /dev/audio</pre>
+Each file has permissions that can be given to the owning user and group individually, as well as others without ownership over said file. At this point, to explain these
+parameters, it is useful to look at the output of the
+<pre>ls -lha</pre>
+command, which displays the total number of blocks as the first line and proceeds to list each file stored in the current directory according to the following format:
+<pre><i>permissions linkcount owner group size moddate name</i></pre>
+
+- `permissions` defines who can do what with the file, as is explained below
+- `linkcount` gives the number of links contained
+  - for regular files, this is just the link to itself, so always `1`
+  - for directories, which are files themselves, it is at least `2` for the self `.` and the parent `..` directory, with each subdirectory incrementing the counter
+- `owner` is the owning user account name
+- `group` is the owning group name
+- `size` gives the amount of storage reserved
+  - for regular files, this is just the actual size in bits or bytes
+  - for directories, it is the size required to store the links to the contained files, for typical filesystems always as integer multiples of the block size
+- `moddate` is the date on which the file was last modified and takes up three columns
+  - first, the month is displayed as `MMM`
+  - second, the day is displayed as `D`
+  - third, if the date is in the same calendar, the time is displayed as `hh:mm` or else, the year is displayed as `YYYY`
+- `name` is the file identifier
+
+> **With the `a` flag, running `ls` shows hidden files which have names starting with `.` and are otherwise excluded. The `h` option makes the size formats human readable.
+And the `l` parameter makes it so that the long format is output instead of just the names in a shortened list.**
 
 #### Security
 
