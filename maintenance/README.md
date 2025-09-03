@@ -438,6 +438,23 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>faillock --user <i>username</i> --reset</pre>
 
+  On systems with many or untrusted users, the number of processes each can run should be limited to prevent fork bombs, wherein a process continuously replicates itself to
+  induce resource starvation. Finally, Wayland is preferrable versus Xorg from a security perspective, for example to prevent keystroke recording by inactive applications.
+  If still required, it should be run rootless such as under the Xwayland compatibility layer.
+- As the most powerful user on any system, root user account usage should be restricted as much as possible. Due to this, `sudo` should be used instead of `su` as it provides
+  several advantages when giving privileged access while limiting the potential harm:
+  - It keeps a log of which normal privilege user has run each privileged command.
+  - The root user password need not be given out to each user who requires root access.
+  - Users are prevented from accidentally running commands as root that do not need root access, because a full root terminal is not created.
+  - Individual programs may be enabled per user, instead of offering complete root access just to run one command.
+  For `sudo` settings, edit the `/etc/sudoers` file with the `visudo` command, which locks the file, creates a temporary version and only copies to the original after checking
+  for syntax errors. If `vi` is not your preferred editor, you can `visudo` to set the default in the `/etc/sudoers` file:
+
+  <pre>Defaults editor=/usr/bin/<i>editor</i>, !env_editor</pre>
+
+  Recommended editors are the restricted `rvim` or `rnano` versions. The above line also disallows `visudo` to export the `EDITOR` and `VISUAL` environment variables, which
+  would be a severe security risk, because anything can be chosen as an editor. 
+
 #### Daemons
 
 #### Updates & Upgrades & Backup
