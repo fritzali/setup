@@ -526,6 +526,18 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>cmap w!! w !sudo tee > /dev/null %</pre>
 
+  Once `sudo` is properly configured, full root access can be heavily restricted or denied without losing much usability. To disable `root` and still allow using sudo, you
+  can use
+
+  <pre>passwd --lock root</pre>
+
+  and even edit `/etc/security/access.conf` to specify acceptable login combinations.
+- Another type of security policy that differs significantly from the default discretionary access control is mandatory access control, checking any action against a ruleset.
+- Kernel hardening includes self protection and exploit mitigation, hiding `pid` values and restricting module loading, as well as disabling `kexec` and the emergency shell.
+- Applications can be sandboxed up to full virtualization options like VirtualBox or KVM to improve isolation and security, especially in the event of running risky
+  applications or browsing dangerous websites.
+- Networking can be secured
+
 #### Daemons
 
 #### Updates & Upgrades & Backup
