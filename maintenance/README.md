@@ -466,6 +466,20 @@ Additionally, there are some mostly common sense directions to follow:
   <pre>chown -c root:root /etc/sudoers</pre>
   <pre>chmod -c 0440 /etc/sudoers</pre>
 
+  A common annoyance is a long running process that runs on a background terminal somewhere that runs with normal permissions and elevates only when needed. This leads to a `sudo`
+  password prompt which goes unnoticed and times out, at which point the process dies and the work done is lost or, at best, cached. To deal with this, the prompt timeout can be
+  disabled, and since it does not serve any reasonable security purpose it should be the solution here, despite contradicting some other common advice:
+
+  <pre>Defaults passwd_timeout=0</pre>
+
+  Since `Zsh` and `Bash` normally only expand aliases for the first word in a command, this will not work after `sudo` is envoked. To circumvent this, you can make the next word
+  expand by aliasing `sudo` to end in a space, by entering the following in your shell configuration file:
+
+  <pre>alias sudo='sudo '</pre>
+
+  In order to draw attention to a `sudo` password prompt, even when running in a background terminal, the `SUDO_PROMPT` environment variable can be exported in your shell
+  initialization with `tput` usage, setting for example a bold colored prompt, or including a bell character.
+
 #### Daemons
 
 #### Updates & Upgrades & Backup
