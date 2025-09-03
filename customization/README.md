@@ -27,6 +27,8 @@
 - [cronie](https://archlinux.org/packages/extra/x86_64/cronie/) Cron Job Scheduler
 - [samba](https://archlinux.org/packages/extra/x86_64/samba/) File Sharing Server
 - [polkit](https://archlinux.org/packages/extra/x86_64/polkit/) Policy Toolkit
+- [pwgen](https://archlinux.org/packages/extra/x86_64/pwgen/) Password Generator
+- [keepassxc](https://archlinux.org/packages/extra/x86_64/keepassxc/) Password Manager
 
 #### Internet
 
