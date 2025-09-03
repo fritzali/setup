@@ -419,7 +419,24 @@ Additionally, there are some mostly common sense directions to follow:
   - do not allow `setuid` and `setgid` bits to take effect, `nosuid`
   - do not allow direct execution of any binaries on the mounted filesystem, `noexec`
   Filesystems used for data should always have all of these set. One should also be aware that snapshots may contain sensitive information that users expect to be deleted.
-  Additionally and as mentioned earlier, file access permissions should be restricted whenever feasible, especially for 
+  Additionally and as mentioned earlier, file access permissions should be restricted whenever feasible, especially for `nftables` and `iptables` as well as `boot` directories.
+  Another consideration is changing the `umask` from `0022` to `0077` for maximum security, to make new files not readable for users other than the owner. It is important to be
+  aware of any files with SUID or SGID bits set, to limit the attack surface from privilege escalation vulnerabilities. To search for such files, run:
+
+  <pre>find / -perm "/u=s,g=s" -type f 2>/dev/null</pre>
+- In the user setup, one should ensure to not use the root account for daily tasks. To massively slow down even intelligent brute force attacks, enforce a delay after failed
+  login attempts by adding this line to the `/etc/pam.d/system-login` file:
+
+  <pre>auth optional pam_faildelay.so delay=<i>time</i></pre>
+
+  Here, the time is given in units of microseconds.
+
+  > **Other PAM modules besides `pam_faildelay` can suggest a delay as well, such as `pam_unix` and `pam_faillock` with a default of two seconds. In this case PAM will always
+  use the longest time.**
+
+  Further, users can be locked out after multiple failed login attempts, except the root user to prevent complete denial of service. Unlock a user with:
+
+  <pre>faillock --user <i>username</i> --reset</pre>
 
 #### Daemons
 
