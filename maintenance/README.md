@@ -412,7 +412,14 @@ Additionally, there are some mostly common sense directions to follow:
   When hosting untrustworthy virtualization guests as a hypervisor, one might want to disable simultaneous multithreading by setting the `nosmt` kernel parameter.
 - To improve memory safety, hardened malloc, which was originally developed for [GrapheneOS](https://grapheneos.org/) Android versions, can be used to replace the `glibc`
   default.
-- 
+- Encrypting data at rest, when the machine is turned off or the disks are unmounted, is the only way to guard against physical recovery. To provide data confidentiality,
+  full disk encryption with a strong passphrase is preferred. The kernel automatically prevents security issues related to hardlinks and symlinks if the appropriate switches
+  are enabled. Filesystems should be mounted with the most restrictive mount options possible, which are:
+  - do not interpret character or block special devices on the file system, `nodev`
+  - do not allow `setuid` and `setgid` bits to take effect, `nosuid`
+  - do not allow direct execution of any binaries on the mounted filesystem, `noexec`
+  Filesystems used for data should always have all of these set. One should also be aware that snapshots may contain sensitive information that users expect to be deleted.
+  Additionally and as mentioned earlier, file access permissions should be restricted whenever feasible, especially for 
 
 #### Daemons
 
