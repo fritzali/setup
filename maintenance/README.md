@@ -462,6 +462,8 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>%wheel ALL=(ALL:ALL) ALL</pre>
 
+  > **The most customized option should go at the end of the file, as the later lines override the previous ones.**
+
   The file owner, group and permissions for `/etc/sudoers` should always be set to the defaults, otherwise `sudo` will fail:
   <pre>chown -c root:root /etc/sudoers</pre>
   <pre>chmod -c 0440 /etc/sudoers</pre>
@@ -478,7 +480,51 @@ Additionally, there are some mostly common sense directions to follow:
   <pre>alias sudo='sudo '</pre>
 
   In order to draw attention to a `sudo` password prompt, even when running in a background terminal, the `SUDO_PROMPT` environment variable can be exported in your shell
-  initialization with `tput` usage, setting for example a bold colored prompt, or including a bell character.
+  initialization with `tput` usage, setting for example a bold colored prompt, or including a bell character. If you do not want to enter your password for each newly opened
+  terminal, use `visudo` to set:
+
+  <pre>Defaults timestamp_type=global</pre>
+
+  > **This will let any process use your sudo session.**
+
+  Reduce the number of times you have to type your password by increasing the default five minute interval:
+
+  <pre>Defaults timestamp_timeout=<i>minutes</i></pre>
+
+  This can be refreshed with the `v` and immediately revoked with the `K` flag. If you have a lot of environment variables, or you export your proxy settings, when using `sudo`
+  these variables do not get passed to the root account unless you run with the `E` option. The recommended way of preserving environment variables is to append them like this:
+
+  <pre>Defaults env_keep += "ftp_proxy http_proxy https_proxy no_proxy"</pre>
+
+  Users can configure `sudo` to ask for the root password instead of the user password by adding a `targetpw` or `rootpw` default:
+
+  <pre>Defaults targetpw</pre>
+
+  To prevent exposing your root password to users, you can restrict this to a specific group:
+
+  <pre>Defaults:%wheel targetpw<br>%wheel ALL=(ALL) ALL</pre>
+
+  Disable asking password prompts altogether for a specific user as follows:
+
+  <pre>Defaults:<i>username</i> !authenticate</pre>
+
+  > **This will allow any process running with your user name to use sudo without asking for permission.**
+
+  To conveniently edit files, use `sudoedit` as an equivalent to the `e` flag. Set `SUDO_EDITOR` and pass it to the command, for example:
+
+  <pre>SUDO_EDITOR=vim sudoedit <i>file</i></pre>
+
+  If multiple files are passed, all are opened in the editor with a single invocation, a feature useful for merging files:
+
+  <pre>SUDO_EDITOR=vimdiff sudoedit <i>file</i> <i>file</i>.pacnew</pre>
+
+  Lastly, writing to protected files after forgetting `sudo` before starting Vim, for example, you can do the following in Vim to still save the file:
+
+  <pre>:w !sudo tee %</pre>
+
+  Add this to your `~/.vimrc` with the common `:w!!` mapping:
+
+  <pre>cmap w!! w !sudo tee > /dev/null %</pre>
 
 #### Daemons
 
