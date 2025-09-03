@@ -293,7 +293,100 @@ To list all files owned by a specific user or group, use:
 <pre>find / -group <i>groupnumber</i></pre>
 <pre>find / -user <i>user</i></pre>
 
+If one wants to change the permissions of a file, there are different methods based on the `chmod` command. In the text based method, setting access modes follows
 
+<pre>chmod <i>who</i>=<i>permissions</i> <i>filename</i></pre>
+
+as the syntax. The `permissions` are the same as before with `r` for read, `w` for write, and `x` for execute rights, while the `who` argument can take four letter values:
+
+- `u` for the user that owns the file
+- `g` for the group the file belongs to
+- `o` for any others without ownership
+- `a` for all the above, replacing the `ugo` combination
+
+A thing to look out for when using this approach is that any previously defined permissions of the specified triads are overwritten. To only modify existing permissions,
+use `+` or `-` to grant or revoke rights instead of the `=` sign. One can also copy permissions from one class to another, although this cannot be combined with modifying
+permissions in the same command:
+
+<pre>chmod <i>who</i>=<i>who</i> <i>filename</i></pre>
+
+Now some examples:
+
+- <code>chmod o= <i>filename</i></code> denies any permissions to the others class
+- <code>chmod go=rw <i>filename</i></code> grants read and write permissions to both group and others classes
+- <code>chmod g+w <i>filename</i></code> adds write access to the permissions of the group class
+- <code>chmod a-w <i>filename</i></code> removes write access from the permissions of all classes
+- <code>chmod g=u <i>filename</i></code> gives the group the same rights as those belonging to the owner class
+
+In the numeric method, numbers are used instead of letters for all three classes at the same time, making the process shorter but also less readable. In the
+
+<pre>chmod <i>nnn</i> <i>filename</i></pre>
+
+command, `nnn` is a three digit number, with each digit having a value in the range of `0` to `7` and subsequent digits applying permissions for owner, group, and others
+classes, respectively. The previously defined rights are mapped to numbers as follows:
+
+- `r` to `4`
+- `w` to `2`
+- `x` to `1`
+
+Summing any combination of these results in a value between `0` and `7` unique to this specific combination, allowing one to set the same permissions options as before.
+To view the access mode of a file in this form, run:
+
+<pre>stat -c %a <i>file</i></pre>
+
+Typically, directories have `755` to allow reading, writing and execution to the owner, but deny writing to anyone else, and regular files are normally `644` to allow
+reading and writing to the owner but only reading to anyone else. A couple examples of this:
+
+- <code>chmod 775 <i>filename</i></code> is equivalent to combining <code>chmod ug=rwx <i>filename</i></code> and <code>chmod o=rx <i>filename</i></code>
+- <code>chmod 664 <i>filename</i></code> is equivalent to combining <code>chmod ug=rw <i>filename</i></code> and <code>chmod o=r <i>filename</i></code>
+
+One can also use binary numbers by simply converting each decimal system digit, such that:
+
+- `000` is `0`
+- `001` is `1`
+- `010` is `2`
+- `011` is `3`
+- `100` is `4`
+- `101` is `5`
+- `110` is `6`
+- `111` is `7`
+
+Furthermore, the `setuid` and `setgid` as  well as `sticky` bits can be set as the first of four decimal digits, with encoding:
+
+- `setuid` to `4`
+- `setgid` to `2`
+- `sticky` to `1`
+
+Directories and files should generally not have the same permissions. If it is necessary to bulk modify a directory tree, use find to selectively modify one or the other:
+
+<pre>find <i>directory</i> -type d -exec chmod 755 {} +</pre>
+<pre>find <i>directory</i> -type f -exec chmod 644 {} +</pre>
+
+In case the owner of a file needs to be changed, the `chown` command is employed. To set a new owning user, run:
+
+<pre>chown <i>username</i> <i>filename</i></pre>
+
+> **This always clears the `setuid` and `setgid` bits.**
+
+Apart from the mode bits discussed until now, several filesystems support more attributes that allow for further customization of performed file operations.
+
+> By default, these file attributes are not preserved by programs such as `cp` or the `rsync` utility.
+
+A few useful attributes:
+
+- allow opening only to append, `a`
+- enable compression on filesystem level, `c`
+- make immutable, cannot be modified, deleted, renamed or linked to, `i`
+- use the journal for file data writes and metadata, `j`
+- disable compression on filesystem level, `m`
+
+These can be set and removed with `chattr` and the `+` or `-` options. For example, enabling immutability or turning off data journaling would look like this:
+
+<pre>chattr +i /<i>path</i>/<i>to</i>/<i>file</i></pre>
+<pre>chattr -j /<i>path</i>/<i>to</i>/<i>file</i></pre>
+
+Lastly, a tip to prevent `chmod` from recursively removing the executable bit systemwide when acting on `/` and thus breaking the system, use the `--preserve-root` flag or
+set it as an alias.
 
 #### Security
 
