@@ -422,7 +422,7 @@ Additionally, there are some mostly common sense directions to follow:
   Additionally and as mentioned earlier, file access permissions should be restricted whenever feasible, especially for `nftables` and `iptables` as well as `boot` directories.
   Another consideration is changing the `umask` from `0022` to `0077` for maximum security, to make new files not readable for users other than the owner. It is important to be
   aware of any files with SUID or SGID bits set, to limit the attack surface from privilege escalation vulnerabilities. To search for such files, run:
-
+  <br>
   <pre>find / -perm "/u=s,g=s" -type f 2>/dev/null</pre>
 - In the user setup, one should ensure to not use the root account for daily tasks. To massively slow down even intelligent brute force attacks, enforce a delay after failed
   login attempts by adding this line to the `/etc/pam.d/system-login` file:
@@ -449,11 +449,22 @@ Additionally, there are some mostly common sense directions to follow:
   - Individual programs may be enabled per user, instead of offering complete root access just to run one command.
   For `sudo` settings, edit the `/etc/sudoers` file with the `visudo` command, which locks the file, creates a temporary version and only copies to the original after checking
   for syntax errors. If `vi` is not your preferred editor, you can `visudo` to set the default in the `/etc/sudoers` file:
-
+  <br>
   <pre>Defaults editor=/usr/bin/<i>editor</i>, !env_editor</pre>
 
   Recommended editors are the restricted `rvim` or `rnano` versions. The above line also disallows `visudo` to export the `EDITOR` and `VISUAL` environment variables, which
-  would be a severe security risk, because anything can be chosen as an editor. 
+  would be a severe security risk, because anything can be chosen as an editor. Some example entries that define rights are given below. To give a user access to a
+  particular program, use `visudo` to enter:
+
+  <pre><i>username</i> ALL = NOPASSWD: /<i>path</i>/<i>to</i>/<i>program</i></pre>
+
+  And to allow members of group `wheel` access to the `sudo` command:
+
+  <pre>%wheel ALL=(ALL:ALL) ALL</pre>
+
+  The file owner, group and permissions for `/etc/sudoers` should always be set to the defaults, otherwise `sudo` will fail:
+  <pre>chown -c root:root /etc/sudoers</pre>
+  <pre>chmod -c 0440 /etc/sudoers</pre>
 
 #### Daemons
 
