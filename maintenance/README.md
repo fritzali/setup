@@ -390,6 +390,30 @@ set it as an alias.
 
 #### Security
 
+In the process of hardening an Arch Linux system, there are a few concepts one should be aware of:
+
+- There is a balance between security and convenience, the goal can only be a secure and useful system, not tightening security to the point the system is unusable.
+- The biggest threat is, and will always be, the user.
+- Each part of a system should only be able to access what is strictly required, the principle of least privilege.
+- Security works best if, when one layer is breached, another independent layer stops the attack, defense in depth.
+- It is best practice to be a little paranoid and suspicious.
+- To make a system absolutely secure, the only way is to never use it.
+- Create a plan ahead of time to follow if and when security is broken, prepate for failure.
+
+Additionally, there are some mostly common sense directions to follow:
+
+- Only create and use safe password, with length and entropy being key. Maintain the database containing your passwords securely, regularly check for compromised phrases and
+  change those if necessary. It is useful to understand how the `passwd` command hashes passwords by stretching and salting to defend against attacks such as precomputed
+  rainbow tables. One can also set up automatic checks that enforce password quality.
+- Keep your processor microcode up to date for important security updates. Check for hardware vulnerabilities and mitigations by running:
+
+  <pre>grep -r . /sys/devices/system/cpu/vulnerabilities/</pre>
+
+  When hosting untrustworthy virtualization guests as a hypervisor, one might want to disable simultaneous multithreading by setting the `nosmt` kernel parameter.
+- To improve memory safety, hardened malloc, which was originally developed for [GrapheneOS](https://grapheneos.org/) Android versions, can be used to replace the `glibc`
+  default.
+- 
+
 #### Daemons
 
 #### Updates & Upgrades & Backup
