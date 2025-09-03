@@ -277,9 +277,21 @@ Now, the structure of the mode string that defines the file permissions can be s
 Some examples:
 
 - `drwxr-xr-x` describes a directory whose owner can view and modify its content, as well as use the `cd` command, whereas the group and others can only view and `cd` into
-  it without making modifications, and no alternate access methods being available for the file
+  it without making modifications, and no alternate access methods being available
 - `-rw-r--r--` describes a regular file whose owner can read and write, but is not able to execute it, whose group and others can only read its contents, and for which no
   alternate access method is available
+
+It is also possible to get just the owning user or group, or the access rights for a specific file:
+
+<pre>stat -c %U <i>file</i></pre>
+<pre>stat -c %G <i>file</i></pre>
+<pre>stat -c %A <i>file</i></pre>
+
+To list all files owned by a specific user or group, use:
+
+<pre>find / -group <i>groupname</i></pre>
+<pre>find / -group <i>groupnumber</i></pre>
+<pre>find / -user <i>user</i></pre>
 
 
 
