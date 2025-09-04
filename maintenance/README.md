@@ -534,9 +534,10 @@ Additionally, there are some mostly common sense directions to follow:
   and even edit `/etc/security/access.conf` to specify acceptable login combinations.
 - Another type of security policy that differs significantly from the default discretionary access control is mandatory access control, checking any action against a ruleset.
 - Kernel hardening includes self protection and exploit mitigation, hiding `pid` values and restricting module loading, as well as disabling `kexec` and the emergency shell.
-- Applications can be sandboxed up to full virtualization options like VirtualBox or KVM to improve isolation and security, especially in the event of running risky
+- Applications can be sandboxed up to full virtualization containers like VirtualBox or KVM to improve isolation and security, especially in the event of running risky
   applications or browsing dangerous websites.
-- Networking can be secured
+- Setting up a basic firewall is highly recommended to protect services running on the system from network attacks. The stock Arch Linux kernel is capable of using `iptables`
+  and `nftables` provided by the Netfilter framework, although these services are not enabled by default. 
 
 #### Daemons
 
