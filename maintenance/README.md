@@ -585,7 +585,7 @@ Additionally, there are some mostly common sense directions to follow:
   <pre>ss -lpntu</pre>
 
   Kernel parameters affecting networking can be set with `sysctl` for stack hardening. To mitigate SSH brute force attacks, enforce key based authentication, with some procedures
-  using a second OTP factor. The default DNS configuration sacrifices privacy and security for compatibility, so consider adapting it to your needs. To prevent remote code
+  offering a second OTP factor. The default DNS configuration sacrifices privacy and security for compatibility, so consider adapting it to your needs. To prevent remote code
   execution due to DNS resolver bugs, a caching server can be used as a proxy. Also manage trust for TLS and deprecated SSL certificates.
 - Physical access to a computer will grant root access with enough time and resources, but a high practical level of security can still be achieved by putting up enough barriers.
   Determined and knowledgeable attackers can gain control during the next boot by attaching malicious FireWire, Thunderbolt or PCIe devices, which are given full memory access by
@@ -758,6 +758,8 @@ Journal files must have been rotated out and made inactive before they can be tr
 The `--rotate` argument can also be provided alongside one or more vacuum criteria arguments to perform rotation and then trim files in a single command.
 
 #### Updates & Upgrades & Backup
+
+
 
 <br><br>
 
