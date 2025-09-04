@@ -566,7 +566,7 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>nft -s list ruleset | tee <i>filename</i></pre>
 
-  In lieu of not explicitly knowing which services are worth protecting, it is a good precaution to enable a stateful firewall. You can log traffic,
+  In lieu of explicitly knowing which services are worth protecting, it is a good precaution to enable a stateful firewall. You can log traffic,
 
   <pre>nft add rule inet filter input log</pre>
 
