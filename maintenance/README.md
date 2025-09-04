@@ -615,10 +615,54 @@ The `systemctl` command is the main command tool used to introspect and control 
 their type in the suffix, with common ones being `.service` for services, `.mount` for mount points, `.device` for devices, and `.socket` for sockets, with others existing, too.
 If the suffix is omitted, `systemctl` assumes <code><i>unit</i>.service</code> for the unit file. Mount points like <code>/<i>unit</i></code> are automatically translated to the
 appropriate <code><i>unit</i>.mount</code> type. Similarly, devices such as <code>/dev/<i>unit</i></code> have <code>dev-<i>unit</i>.device</code> as their translation. Some unit
-files contain `@` signs, such as for a <code><i>name</i>@<i>string</i>.service</code> service.
+files contain `@` signs, such as for a <code><i>name</i>@<i>string</i>.service</code> example service. Here the name refers to a template unit, with string identifying its instance.
+A list of `systemctl` commands:
 
+- analyzing system state
+  - show system status, `systemctl status`
+  - list running units, `systemctl list-units`
+  - list failed units, `systemctl --failed`
+  - list installed unit files that are placed in the correct directories, `systemctl --list-unit-files`
+  - show process status by PID, <code>systemctl status <i>pid</i></code>
+- checking unit status
+  - show associated manual page, <code>systemctl help <i>unit</i></code>
+  - status of a unit, <code>systemctl status <i>unit</i></code>
+  - check whether a unit is enables, <code>systemctl is-enabled <i>unit</i></code>
+- starting, restarting, reloading units
+  - start a unit immediately, <code>systemctl start <i>unit</i></code>
+  - stop a unit immediately, <code>systemctl stop <i>unit</i></code>
+  - restart a unit, <code>systemctl restart <i>unit</i></code>
+  - reload a unit and its configuration, <code>systemctl reload <i>unit</i></code>
+  - reload `systemd` manager configuration without asking units to reload themselves, `systemctl daemon-reload`
+- enabling units
+  - enable a unit to start automatically at boot, <code>systemctl enable <i>unit</i></code>
+  - disable a unit to no longer start at boot, <code>systemctl disable <i>unit</i></code>
+  - reenable a unit to reflect new changes, <code>systemctl reenable <i>unit</i></code>
+- masking units
+  - mask a unit to make it impossible to start manually and as a dependency, <code>systemctl mask <i>unit</i></code>7
+  - unmask a unit, <code>systemctl unmask <i>unit</i></code>
+  - check for existing marked units, `systemctl list-unit-files --state=masked`
 
+> **To use `enable` to start, `disable` to stop, and `mask` to mask a unit immediately rather than after rebooting, use the `--now` switch. The above commands operate on system
+units since `--system` is the `systemctl` default. If desired, these can operate on user units belonging to the caller with the `--user` flag. When available, it may be preferrable
+to enable <code><i>unit</i>.socket</code> instead of <code><i>unit</i>.service</code> because the socket would only start the service when necessary on demand, such as for CUPS
+activation.**
 
+Commands for power management:
+
+- shut down and reboot the system, `systemctl reboot`
+- shut down and power off the system, `systemctl poweroff`
+- suspend the system, `systemctl suspend`
+- put the system into hibernation by writing RAM to disk, `systemctl hibernate`
+- put the system into hybrid sleep by saving RAM to disk and then suspending, `systemctl hybrid-sleep`
+- suspend and then wake up after a configured time to just hibernate the system, `systemctl suspend-then-hibernate`
+- perform a userspace only reboot, `systemctl soft-reboot`
+
+> **The latter option skips reinitialization of firmware, kernel and initramfs. It should not be used after package updates involving kernel or initramfs.**
+
+Some non exhaustive `systemd` components:
+
+- 
 
 #### Updates & Upgrades & Backup
 
