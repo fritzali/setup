@@ -538,8 +538,8 @@ Additionally, there are some mostly common sense directions to follow:
   applications or browsing dangerous websites.
 - Setting up a basic firewall is highly recommended to protect services running on the system from network attacks. The stock Arch Linux kernel is capable of using `iptables`
   and `nftables` provided by the Netfilter framework, although these services are not enabled by default. As a general recommendation, use the more modern and efficient, non
-  locking `nftables` over the older `iptables` option, with translation layers being available and usually sufficient for `docker` and other containers, for example. The
-  current ruleset can be printed with:
+  locking `nftables` over the older `iptables` option, with translation layers like `iptables-nft` being available and usually sufficient for `docker` and other containers,
+  for example. The current ruleset can be printed with:
 
   <pre>nft list ruleset</pre>
 
@@ -574,7 +574,7 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>nft monitor</pre>
 
-  To avoid hardcoding, dynamic named sets can be used.
+  To avoid hardcoding, `systemd-networkd` can be used for dynamic named sets.
 
   Some services listen for inbound traffic on open network ports. It is important to only bind these services to the addresses and interfaces that are strictly necessary, otherwise
   it may be possible for a remote attacker to exploit flawed network protocols to access exposed services. This can even happen with processes bound to localhost. In general, if a
@@ -587,7 +587,26 @@ Additionally, there are some mostly common sense directions to follow:
   Kernel parameters affecting networking can be set with `sysctl` for stack hardening. To mitigate SSH brute force attacks, enforce key based authentication, with some procedures
   using a second OTP factor. The default DNS configuration sacrifices privacy and security for compatibility, so consider adapting it to your needs. To prevent remote code
   execution due to DNS resolver bugs, a caching server can be used as a proxy. Also manage trust for TLS and deprecated SSL certificates.
-- 
+- Physical access to a computer will grant root access with enough time and resources, but a high practical level of security can still be achieved by putting up enough barriers.
+  Determined and knowledgeable attackers can gain control during the next boot by attaching malicious FireWire, Thunderbolt or PCIe devices, which are given full memory access by
+  default, or gain access to your data by installing malicious malware. Important steps to harden the physical security include:
+  - Lock down BIOS access by adding a password so that removable devices cannot be booted from. Make sure your drive is first in the boot order and disable other drives from being
+    bootable if possible.
+  - It is highly important to protect your boot loader, because while being unprotected, it can bypass any login restriction by setting the `init=/bin/sh` kernel parameter, for
+    example. Editing kernel parameters is disabled when `systemd-boot` is used, at least as long as Secure Boot is enabled. Other boot managers will differ.
+  - Turning on Secure Boot, a feature of UEFI to allow authentication of the files your computer boots, helps in preventing evil maiden attacks. Normally, computers come with OEM
+    vendor keys, which can however be removed, allowing users to enroll and manage their own keys with Setup Mode at the risk of irreversibly bricking the hardware.
+  - The TPM includes hardware microprocessors which have cryptographic keys embedded. This forms the fundamental root of trust of most modern computers and allows end to end
+    verification of the boot chain. They can be used as internal smartcards, attest the firmware running on the computer and allow users to insert secrets into a tamper proof
+    and brute force resistant store.
+  - One popular idea is to place the boot partition on a separate flash drive in order to render the system unbootable without it. Proponents of this idea often use full disk
+    encryption alongside, and some also use detached encryption headers placed on the boot partition.
+  - In Bash and Zsh, a `TMOUT` can be set to automatically logout from shells after a timeout.
+  - Another protection to consider is one against rogue USB devices.
+  - Lastly, powered on computers may be vulnerable to volatile data collection. Prevent this by turning the computer off whenever sensible, especially when the physical security
+    is temporarily compromised, such as at security checkpoints.
+- Packages should be authenticated with proper signature systems and upgraded regularly to minimize attack surfaces. Follow vulnerability alerts and rebuild packages stripped of
+  undesired functions.
 
 #### Daemons
 
