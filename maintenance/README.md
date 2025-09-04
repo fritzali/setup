@@ -702,8 +702,8 @@ The network wait service of the network manager in use must also be enabled so t
 
 > **If a service needs to perform DNS queries, it should additionally be ordered after `nss-lookup.target` is fulfilled.**
 
-Adding to all of this, `systemd` has its own logging system, called the journal and accessed with the `cournalctl` command. Messages are classified by priority level and facility.
-Priority is conveyed via syslog severity codes:
+Adding to all of this, `systemd` has its own logging system, called the journal and accessed with the `cournalctl` command. Messages are classified by priority level and
+facility. Priority is conveyed via syslog severity codes:
 
 - `0` for *Emergency*
 - `1` for *Alert*
@@ -737,6 +737,25 @@ Outputs can be filtered by specific fields, for example:
 - show only messages with priority between error and alert, `journalctl -p err..alert`
 - show `auth.log` equivalent by filtering, `journalctl SYSLOG_FACILITY=10`
 - speed up the process by forcing the command to only look at the most recent journal, <br>`journalctl --file /var/log/journal/*/system.journal -f`
+
+One can check the current journal size limit with the
+
+<pre>journalctl -b -u systemd-journald</pre>
+
+logs. To set the maximum allowed size of the persistent journal, uncomment and change the following, 
+
+<pre>SystemMaxUse=<i>size</i></pre>
+
+in the `/etc/systemd/journald.conf` file. Restart the `systemd-journald.service` after changing this setting to apply the new limit. You can also clean journal files
+manually, for example remove archived ones until the used disk space falls under a certain size or force all to contain no data that is older than an amount of weeks:
+
+<pre>journalctl --vacuum-size=<i>size</i></pre>
+<pre>journalctl --vacuum-time=<i>amount</i>weeks</pre>
+
+Journal files must have been rotated out and made inactive before they can be trimmed by vacuum commands, which can be done by running:
+<pre>journalctl --rotate</pre>
+
+The `--rotate` argument can also be provided alongside one or more vacuum criteria arguments to perform rotation and then trim files in a single command.
 
 #### Updates & Upgrades & Backup
 
