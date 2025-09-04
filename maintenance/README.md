@@ -537,7 +537,57 @@ Additionally, there are some mostly common sense directions to follow:
 - Applications can be sandboxed up to full virtualization containers like VirtualBox or KVM to improve isolation and security, especially in the event of running risky
   applications or browsing dangerous websites.
 - Setting up a basic firewall is highly recommended to protect services running on the system from network attacks. The stock Arch Linux kernel is capable of using `iptables`
-  and `nftables` provided by the Netfilter framework, although these services are not enabled by default. 
+  and `nftables` provided by the Netfilter framework, although these services are not enabled by default. As a general recommendation, use the more modern and efficient, non
+  locking `nftables` over the older `iptables` option, with translation layers being available and usually sufficient for `docker` and other containers, for example. The
+  current ruleset can be printed with:
+
+  <pre>nft list ruleset</pre>
+
+  To remove all rulesets, leaving the system with no firewall, run:
+
+  <pre>nft flush ruleset</pre>
+
+  A simple firewall configuration is stored in `/etc/nftables.conf` and loaded by `nftables.service` when starting or enabling it. Tables hold chains, which themselves contain
+  rules that are constructed from expressions or statements, including named or anonymous sets. Atomic reloading is achieved as follows:
+
+  - Flush the current ruleset:
+
+    <pre>echo "flush ruleset" > /tmp/nftables</pre>
+
+  - Dump the current ruleset:
+
+    <pre>nft -s list ruleset >> /tmp/nftables</pre>
+
+  - Now you can edit `/tmp/nftables` and apply your changes:
+
+    <pre>nft -f /tmp/nftables</pre> 
+
+  Save the current ruleset:
+
+  <pre>nft -s list ruleset | tee <i>filename</i></pre>
+
+  In lieu of not explicitly knowing which services are worth protecting, it is a good precaution to enable a stateful firewall. You can log traffic,
+
+  <pre>nft add rule inet filter input log</pre>
+
+  for all incoming packets, or monitor events by listening to all:
+
+  <pre>nft monitor</pre>
+
+  To avoid hardcoding, dynamic named sets can be used.
+
+  Some services listen for inbound traffic on open network ports. It is important to only bind these services to the addresses and interfaces that are strictly necessary, otherwise
+  it may be possible for a remote attacker to exploit flawed network protocols to access exposed services. This can even happen with processes bound to localhost. In general, if a
+  service only needs to be accessible to the local system, bind to a Unix domain socket or a loopback address such as localhost instead of a non loopback address. If a service needs
+  to be accessible to other systems via the network, control the access with strict firewall rules and configure authentication, authorization and encryption whenever possible. You
+  can show all listening processes as well as their numeric `tcp` and `udp` port numbers:
+
+  <pre>ss -lpntu</pre>
+
+  Kernel parameters affecting networking can be set with `sysctl` for stack hardening. To mitigate SSH brute force attacks, enforce key based authentication, with some procedures
+  using a second OTP factor. The default DNS configuration sacrifices privacy and security for compatibility, so consider adapting it to your needs. To prevent remote code
+  execution due to DNS resolver bugs, a caching server can be used as a proxy. Also manage trust for TLS and deprecated SSL certificates.
+- 
 
 #### Daemons
 
