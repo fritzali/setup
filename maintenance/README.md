@@ -742,7 +742,7 @@ One can check the current journal size limit with the
 
 <pre>journalctl -b -u systemd-journald</pre>
 
-logs. To set the maximum allowed size of the persistent journal, uncomment and change the following, 
+logs. To set the maximum allowed size of the persistent journal, uncomment and change
 
 <pre>SystemMaxUse=<i>size</i></pre>
 
@@ -758,6 +758,13 @@ Journal files must have been rotated out and made inactive before they can be tr
 The `--rotate` argument can also be provided alongside one or more vacuum criteria arguments to perform rotation and then trim files in a single command.
 
 #### Updates & Upgrades & Backup
+
+First, some general habits to adopt for maintaining a system. Check for errors in log files such as `/var/log` and for failed services. Beware of unused large files
+and empty the package cache from `/var/cache/pacman/pkg/` to free up disk space. Remove useless packages, broken symlinks, and old configuration files, often located here:
+
+- `~/.config/`
+- `~/.cache/`
+- `~/.local/share/`
 
 
 
