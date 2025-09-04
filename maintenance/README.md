@@ -474,7 +474,7 @@ Additionally, there are some mostly common sense directions to follow:
 
   <pre>Defaults passwd_timeout=0</pre>
 
-  Since `Zsh` and `Bash` normally only expand aliases for the first word in a command, this will not work after `sudo` is envoked. To circumvent this, you can make the next word
+  Since Zsh and Bash normally only expand aliases for the first word in a command, this will not work after `sudo` is envoked. To circumvent this, you can make the next word
   expand by aliasing `sudo` to end in a space, by entering the following in your shell configuration file:
 
   <pre>alias sudo='sudo '</pre>
