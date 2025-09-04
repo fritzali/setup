@@ -610,6 +610,16 @@ Additionally, there are some mostly common sense directions to follow:
 
 #### Daemons
 
+Arch Linux uses `systemd` as its init process, which is a system and service manager for Linux. For maintaining your installation, it is a good idea to learn the basics about it.
+The `systemctl` command is the main command tool used to introspect and control `systemd` as well as its components, examining and managing the system state. Units are marked by
+their type in the suffix, with common ones being `.service` for services, `.mount` for mount points, `.device` for devices, and `.socket` for sockets, with others existing, too.
+If the suffix is omitted, `systemctl` assumes <code><i>unit</i>.service</code> for the unit file. Mount points like <code>/<i>unit</i></code> are automatically translated to the
+appropriate <code><i>unit</i>.mount</code> type. Similarly, devices such as <code>/dev/<i>unit</i></code> have <code>dev-<i>unit</i>.device</code> as their translation. Some unit
+files contain `@` signs, such as for a <code><i>name</i>@<i>string</i>.service</code> service.
+
+
+
+
 #### Updates & Upgrades & Backup
 
 <br><br>
