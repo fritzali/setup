@@ -702,6 +702,42 @@ The network wait service of the network manager in use must also be enabled so t
 
 > **If a service needs to perform DNS queries, it should additionally be ordered after `nss-lookup.target` is fulfilled.**
 
+Adding to all of this, `systemd` has its own logging system, called the journal and accessed with the `cournalctl` command. Messages are classified by priority level and facility.
+Priority is conveyed via syslog severity codes:
+
+- `0` for *Emergency*
+- `1` for *Alert*
+- `2` for *Critical*
+- `3` for *Error*
+- `4` for *Warning*
+- `5` for *Notice*
+- `6` for *Informational*
+- `7` for *Debug*
+
+To specify the type of program that is logging the message, syslog facility codes are used.
+
+Outputs can be filtered by specific fields, for example:
+
+- show all messages matching some pattern, <code>journalctl --grep=<i>pattern</i></code>
+- show all messages from a boot offset from the current one by integer flags that can be listed, `journalctl --list-boots`
+  - the current boot, `journalctl -b -0`
+  - the previous boot, `journalctl -b -1`
+  - the one before that, `journalctl -b -2`
+- show all known catalog entries, `journalctl --list-catalog`
+  - include explanations where available, `journalctl -x`
+- show all messages from date and optionally time, <code>journalctl --since="<i>YYYY</i>-<i>MM</i>-<i>DD</i> <i>hh</i>:<i>mm</i>:<i>ss</i>"</code>
+- show all messages since some amount of minutes ago, <code>journalctl --since="<i>amount</i> min ago"</code>
+- follow new messages, `journalctl -f`
+- show all messages by a specific executable, <code>journalctl /<i>path</i>/<i>to</i>/<i>executable</i></code>
+- show all messages by a specific identifier, <code>journalctl -t <i>identifier</i></code>
+- show all messages by a specific process, <code>journalctl _PID=<i>pid</i></code>
+- show all messages by a specific unit, <code>journalctl -u <i>unit</i></code>
+- show all messages from user services by a specific unit, <code>journalctl --user -u <i>unit</i></code>
+- show kernel ring buffer, `systemctl -k`
+- show only messages with priority between error and alert, `journalctl -p err..alert`
+- show `auth.log` equivalent by filtering, `journalctl SYSLOG_FACILITY=10`
+- speed up the process by forcing the command to only look at the most recent journal, <br>`journalctl --file /var/log/journal/*/system.journal -f`
+
 #### Updates & Upgrades & Backup
 
 <br><br>
