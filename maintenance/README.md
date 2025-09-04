@@ -637,7 +637,7 @@ A list of `systemctl` commands:
 - enabling units
   - enable a unit to start automatically at boot, <code>systemctl enable <i>unit</i></code>
   - disable a unit to no longer start at boot, <code>systemctl disable <i>unit</i></code>
-  - reenable a unit to reflect new changes, <code>systemctl reenable <i>unit</i></code>
+  - reenable a unit to reflect new changes like in the `[Install]` section, <code>systemctl reenable <i>unit</i></code>
 - masking units
   - mask a unit to make it impossible to start manually and as a dependency, <code>systemctl mask <i>unit</i></code>7
   - unmask a unit, <code>systemctl unmask <i>unit</i></code>
@@ -662,7 +662,45 @@ Commands for power management:
 
 Some non exhaustive `systemd` components:
 
-- 
+- `kernel-install`
+- `systemd-analyze`
+- `systemd-boot`
+- `systemd-creds`
+- `systemd-cryptenroll`
+- `systemd-firstboot`
+- `systemd-homed`
+- `systemd-logind`
+- `systemd-networkd`
+- `systemd nspawn`
+- `systemd repart`
+- `systemd resolved`
+- `systemd run`
+- `systemd stub`
+- `systemd sysusers`
+- `systemd timesyncd`
+- `systemd/Journal`
+- `systemd/Timers`
+
+To delay a service until after a network connection has been established, include the following dependencies in its <code>/etc/systemd/system/<i>unit</i>.service</code> file
+under the `[Unit]` section:
+
+<pre>Wants=network-online.target<br>After=network-online.target</pre>
+
+The network wait service of the network manager in use must also be enabled so that `network-online.target` properly reflects the network status:
+
+- If `networkmanager` is used, both `NetworkManager-wait-online.service` and `NetworkManager.service` should be enabled together. Check if this is the case by running:
+
+  <pre>systemctl is-enabled NetworkManager-wait-online.service</pre>
+  
+  If it is not enabled, then reenable the `NetworkManager.service` unit.
+- In case `netctl` is used, enable the `netctl-wait-online.service` unit.
+- If `systemd-networkd` is used, both `systemd-networkd-wait-online.service` and `systemd-networkd.service` should be enabled. Check if this is the case:
+
+  <pre>systemctl is-enabled systemd-networkd-wait-online.service</pre>
+
+  If it is not enabled, then reenable the `systemd-networkd.service` unit.
+
+> **If a service needs to perform DNS queries, it should additionally be ordered after `nss-lookup.target` is fulfilled.**
 
 #### Updates & Upgrades & Backup
 
