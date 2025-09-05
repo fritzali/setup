@@ -820,7 +820,7 @@ everything works as intended. Especially when editing configuration files, it is
 version in case of problems. Other categories to consider are a list of installed packages and the `pacman` database, as well as encryption metadata, and system and user
 data in general. Instead of using dedicated configuration managers, it is often sufficient to track dotfiles with `git` and push to a remote [GitHub](https://github.com/)
 or [GitLab](https://about.gitlab.com/) repository. For systems with important data consisting mostly of small text files, this can be used as a general backup tool. Be
-careful to not share any sensitive data. As an example, the following explains a simple `git` and GitHub setup:
+careful to not share any sensitive data. As an example, the following explains a simple `git` setup with GitHub and OAuth tokens:
 
 - 
 
