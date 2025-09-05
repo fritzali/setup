@@ -861,7 +861,7 @@ a general backup tool. Be careful to not share any sensitive data. As an example
     <pre>git pull</pre>
 
 To syncronize dotfiles this way, one method is to track the `.config` directory with `git` and store all configuration files inside. Those that are read from a different
-location can be symlinked to the repository. Combined with `packman` databases, this can be automated with a scheduled script to easily rebuild the environment.
+location can be symlinked to the repository. Combined with `pacman` package databases, this can be automated with a scheduled script to easily rebuild the environment.
 
 <br><br>
 
