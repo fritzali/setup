@@ -814,6 +814,16 @@ responsibility for maintaining their own system. There are several recommendatio
 
   This will also include manually installed packages, so be careful when considering which ones to remove.
 
+Having backups of important data is a necessary measure to take, since human as well as machine processing errors are likely to generate corruption as time passes, and any
+physical medium used as storage is inevitably destined to fail. It is highly encouraged to automate backups as well as syncing, and to test the recovery process to ensure
+everything works as intended. Especially when editing configuration files, it is a good idea to create local or remote copies so that you are able to revert to a working
+version in case of problems. Other categories to consider are a list of installed packages and the `pacman` database, as well as encryption metadata, and system and user
+data in general. Instead of using dedicated configuration managers, it is often sufficient to track dotfiles with `git` and push to a remote [GitHub](https://github.com/)
+or [GitLab](https://about.gitlab.com/) repository. For systems with important data consisting mostly of small text files, this can be used as a general backup tool. Be
+careful to not share any sensitive data. As an example, the following explains a simple `git` and GitHub setup:
+
+- 
+
 
 
 <br><br>
