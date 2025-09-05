@@ -822,9 +822,43 @@ data in general. Instead of using dedicated configuration managers, it is often 
 or [GitLab](https://about.gitlab.com/) repository. For systems with important data consisting mostly of small text files, this can be used as a general backup tool. Be
 careful to not share any sensitive data. As an example, the following explains a simple `git` setup with GitHub and OAuth tokens:
 
-- 
+- Make sure your email address is verfied for your GitHub account.
+- Navigate to classic personal access tokens under the GitHub developer settings.
+- Generate a new classic token and give it a descriptive name in the `note` field.
+- Edit the expiration date as desired and choose its scopes.
+- Select `repo` in this step for all rights to private and public repositories except deletion.
+- Generate the token and save it to the clipboard.
+- You will not be able to see the token again once you leave the page.
+- Clone your repository:
 
+  <pre>git clone https:<i>username</i>:<i>token</i>@github.com/<i>username</i>/<i>repository</i>.git <i>folder</i></pre>
 
+  This will create a new directory with the specified folder name inside your current working directory.
+- Change directories into the repository and set your identity:
+
+  <pre>git config user.email "<i>address</i>"</pre>
+  <pre>git config user.name "<i>alias</i>"</pre>
+
+  Use the `--global` flag to make this the default.
+  - print the repository status:
+
+    <pre>git status</pre>
+
+  - track and stage all modifications:
+
+    <pre>git add -A</pre>
+
+  - commit changes with a message:
+ 
+    <pre>git commit -m <i>message</i></pre>
+
+  - push changes to the remote:
+
+    <pre>git push</pre>
+
+  - pull changes from the remote:
+
+    <pre>git pull</pre>
 
 <br><br>
 
