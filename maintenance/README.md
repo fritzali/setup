@@ -819,8 +819,8 @@ physical medium used as storage is inevitably destined to fail. It is highly enc
 everything works as intended. Especially when editing configuration files, it is a good idea to create local or remote copies so that you are able to revert to a working
 version in case of problems. Other categories to consider are a list of installed packages and the `pacman` database, as well as encryption metadata, and system and user
 data in general. Instead of using dedicated configuration managers, it is often sufficient to track dotfiles with `git` and push to a remote [GitHub](https://github.com/)
-or [GitLab](https://about.gitlab.com/) repository. For systems with important data consisting mostly of small text files, this can be used as a general backup tool. Be
-careful to not share any sensitive data. As an example, the following explains a simple `git` setup with GitHub and OAuth tokens:
+or [GitLab](https://about.gitlab.com/) repository. For systems with important data consisting mostly of small text files such as documents and scripts, this can be used as
+a general backup tool. Be careful to not share any sensitive data. As an example, the following explains a simple `git` setup with GitHub and OAuth tokens:
 
 - Make sure your email address is verfied for your GitHub account.
 - Navigate to classic personal access tokens under the GitHub developer settings.
@@ -850,7 +850,7 @@ careful to not share any sensitive data. As an example, the following explains a
 
   - commit changes with a message:
  
-    <pre>git commit -m <i>message</i></pre>
+    <pre>git commit -m "<i>message</i>"</pre>
 
   - push changes to the remote:
 
@@ -859,6 +859,9 @@ careful to not share any sensitive data. As an example, the following explains a
   - pull changes from the remote:
 
     <pre>git pull</pre>
+
+To syncronize dotfiles this way, one method is to track the `.config` directory with `git` and store all configuration files inside. Those that are read from a different
+location can be symlinked to the repository. Combined with `packman` databases, this can be automated with a scheduled script to easily rebuild the environment.
 
 <br><br>
 
