@@ -766,6 +766,54 @@ and empty the package cache from `/var/cache/pacman/pkg/` to free up disk space.
 - `~/.cache/`
 - `~/.local/share/`
 
+To enjoy both the latest bug fixes and security updates, and also to avoid having to deal with too many package upgrades that require manual intervention at once, one
+should regularly perform full system upgrades. For community support requests, it is generally assumed that the system is up to date. A live USB or CD like the Arch Linux
+installation medium should always be available to you to quickly rescue your system. Carefully upgrade all official and community packages, users must be vigilant and take
+responsibility for maintaining their own system. There are several recommendations for system upgrades:
+
+- Read before upgrading the system, always check the [homepage](https://archlinux.org/) and [forums](https://bbs.archlinux.org/) for reported problems. Be aware that
+  upgrading packages can raise unexpected issues that could require immediate intervention. Do not perform upgrades on a stable system shortly before it is needed for
+  important tasks.
+- Always use
+  
+  <pre>pacman -Syu</pre>
+
+  for upgrading. Avoid partial upgrades, as they can lead to dependency version conflicts and therefore break the system. Never run
+
+  <pre>pacman -Sy</pre>
+
+  or
+  
+  <pre>pacman -Syuw</pre>
+
+  that synchronize the package database without installing newer packages. Equally, if one of these two commands has been used, or if
+
+  <pre>pacman -Syu</pre>
+
+  fails to complete the upgrade, do not immediately install packages without running
+
+  <pre>pacman -Su</pre>
+
+  before. Also avoid the `--overwrite` option or `d` flag, such as in the
+
+  <pre>pacman -Rdd <i>package</i></pre>
+
+  command, which skips dependency checks during package removal. As a result, packages providing critical dependencies could be removed, resulting in a broken system.
+- Act on alerts during an upgrade and deal with new `.pacnew` and `.pacsave` configuration files proptly. These files are created to protect previously modified data
+  during upgrades, removals and reinstallations.
+- Best practice is to restart or reboot after upgrades, as live patching can be difficult. The `checkservices` script and `pacdiff` merger might be useful.
+- When encountering problems after an update, check `/var/log/pacman.log` output and the news pages. If nothing is noted there, turn to the forums. Downgrading offending
+  packages should be viewed as a last resort to revert broken updates.
+- Routinely check for orphans and dropped packages. Ones that were once installed as a dependency but on which no other packages depend anymore can be listed with:
+
+  <pre>pacman -Qtd</pre>
+
+  If the package is still needed, set the installation reason to explicit, otherwise delete it. Foreign packages not found in the repositories are listed by running:
+
+  <pre>packman -Qm</pre>
+
+  This will also include manually installed packages, so be careful when considering which ones to remove.
+
 
 
 <br><br>
