@@ -210,7 +210,38 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       Create the `/etc/locale.conf` file and set the `LANG=en_US.UTF-8` variable according to your language needs. If you changed the console keyboard layout before, enter `KEYMAP=de-latin1` in
       `/etc/vconsole.conf` to make it persistent. If desired, set the console font in `/etc/vconsole.conf` as well with the `FONT` and `FONT_MAP` variables.
 
-   5. Configure the network for your system by first setting a consistent and identifiable hostname in `/etc/hostname` that conforms with the requirements. Next, connect to a network:
+   5. Configure the network for your system by first setting a consistent and identifiable hostname in `/etc/hostname` that conforms with the requirements. For an example category, name desktop
+      computers after planets and laptops after moons or dwarf planets:
+
+      - Planets:
+        - Jupiter
+        - Saturn
+        - Uranus
+        - Neptune
+        - Earth
+        - Venus
+        - Mars
+        - Mercury
+      - Dwarfs:
+        - Pluto
+        - Eris
+        - Haumea
+        - Makemake
+        - Gonggong
+        - Quaoar
+        - Ceres
+        - Orcus
+        - Sedna
+      - Moons:
+        - Ganymede
+        - Titan
+        - Callisto
+        - Io
+        - Luna
+        - Europa
+        - Triton
+
+      Next, connect to a network:
 
       <pre>nmcli device wifi connect <i>SSID</i> password <i>password</i></pre>
   
