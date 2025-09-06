@@ -316,7 +316,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
    9. Adapt the boot loader configuration to include kernel parameters for encryption. Edit `/boot/loader/entries/arch.conf` and add
 
-      <pre>cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root</pre>
+      <pre>options cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root rw quiet splash</pre>
 
       to the `options` line. Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced according to what `blkid` says.
 
