@@ -64,7 +64,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
          <pre>station <i>name</i> get-networks</pre>
 
-      6. Connect to a visible or hidden network and enter the passphrase if prompted,
+      6. Connect to a visible or hidden network, enter the passphrase if prompted, and `quit` afterwards,
 
          <pre>station <i>name</i> connect <i>SSID</i></pre>
          <pre>station <i>name</i> connect hidden <i>SSID</i></pre>
