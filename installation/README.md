@@ -240,6 +240,14 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
         - Luna
         - Europa
         - Triton
+      - Questions
+        - Wieso
+        - Weshalb
+        - Warum
+        - Wer
+        - Wie
+        - Was
+        - Wo
 
       Next, connect to a network, or if not possible, do so after successful completion:
 
