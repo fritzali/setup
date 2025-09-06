@@ -177,7 +177,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       
       <pre>genfstab -U /mnt >> /mnt/etc/fstab</pre>
 
-      Check the resulting `/dev/etc/fstab` file and edit in case of errors.
+      Check the resulting `/mnt/etc/fstab` file and edit in case of errors.
 
       > **The contained static information about present filesystems will include the identifier, directory and type among other entries.**
 
