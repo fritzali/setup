@@ -318,7 +318,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
       <pre>cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root</pre>
 
-      to the `options` line. Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced accordingly.
+      to the `options` line. Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced according to what `blkid` says.
 
       > **The UUID in the likely preexisting `root` option should be replaced to avoid duplication conflicts, although in case of redundant entries, usually only the latter is registered
       by the kernel. Otherwise, the order does not matter as flags are independent from each another. Further parameters like `rw` or `ro` specify read write or read only mounting options.
