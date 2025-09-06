@@ -122,8 +122,8 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
   
        <pre>cryptsetup -v luksFormat /dev/nvme0n1p2</pre>
 
-       Specify the LUKS version by adding the `--type` flag after `luksFormat` with either the `luks1` or `luks2` option. You will be prompted for a passphrase. Make a secure choice like with a six word
-       diceware generator.
+       Specify the LUKS version by adding the `--type` flag after `luksFormat` with either the `luks1` or `luks2` option. You will be prompted for a passphrase. Make a secure choice, for example with a
+       six word diceware generator.
 
        <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
 
