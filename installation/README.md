@@ -241,7 +241,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
         - Europa
         - Triton
 
-      Next, connect to a network:
+      Next, connect to a network, or if not possible, do so after successful completion:
 
       <pre>nmcli device wifi connect <i>SSID</i> password <i>password</i></pre>
   
