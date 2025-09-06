@@ -108,7 +108,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
       <br>
 
       > **In this partitioning scheme, only the EFI partition and a root directory are accounted for. This practically eliminates the need for later repartitioning and does not hinder recoverability
-      thanks to the respective Arch Linux helper tools. A swap file will facilitate hibernate functionality while maintaining flexibility and security.**
+      thanks to the respective Arch Linux helper tools. A swap file will facilitate hibernate functionality while maintaining flexibility and security. Overwrite any existing headers.**
 
    10. After this, the partitions should be prepared for LUKS encryption, formatting and mounting.
 
@@ -121,9 +121,11 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
        Prepare the root partition to be encrypted:
   
        <pre>cryptsetup -v luksFormat /dev/nvme0n1p2</pre>
-       <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
 
-       Specify the LUKS version by adding the `--type` flag after `luksFormat` with either the `luks1` or `luks2` option.
+       Specify the LUKS version by adding the `--type` flag after `luksFormat` with either the `luks1` or `luks2` option. You will be prompted for a passphrase. Make a secure choice like with a six word
+       diceware generator.
+
+       <pre>cryptsetup open /dev/nvme0n1p2 root</pre>
 
        > **Never use filesystem repair software such as `fsck` directly on encrypted volumes. If such tools are not used on decrypted devices, any chance at recovering the key will be lost. Unlocking
        with GRUB takes special attention. Different setups with TPM and Secure Boot are not attempted to keep things simple.**
@@ -148,7 +150,7 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
        <pre>mkfs.fat -F32 /dev/nvme0n1p1</pre>
        <pre>mount --mkdir /dev/nvme0n1p1 /mnt/boot</pre>
 
-   11. Enabling TRIM support on LUKS2 is achieved by running <pre>cryptsetup --allow-discards --persistent open /dev/nvme0n1p2 root</pre> or, if the device is already opened, via
+   12. Enabling TRIM support on LUKS2 is achieved by running <pre>cryptsetup --allow-discards --persistent open /dev/nvme0n1p2 root</pre> or, if the device is already opened, via
        <pre>cryptsetup --allow-discards --persistent refresh root</pre> to write the flags persistently into the LUKS header: <br><br><pre>cryptsetup luksDump /dev/nvme0n1p2 | grep Flags</pre>
 
        > **Adding further flags overwrites any existing ones, so any preexisting flag needs to be respecified. On LUKS1 devices, this is somewhat more complicated and requires setting kernel
