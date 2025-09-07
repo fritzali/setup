@@ -883,6 +883,8 @@ location can be symlinked to the repository. Combined with `pacman` package data
 
 ### Booting
 
+SECURE  BOOT
+
 #### Hardware Recognition
 
 #### Microcode
