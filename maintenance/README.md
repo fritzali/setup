@@ -608,6 +608,8 @@ Additionally, there are some mostly common sense directions to follow:
 - Packages should be authenticated with proper signature systems and upgraded regularly to minimize attack surfaces. Follow vulnerability alerts and rebuild packages stripped of
   undesired functions.
 
+UNLOCK LUKS WITH TPM
+
 #### Daemons
 
 Arch Linux uses `systemd` as its init process, which is a system and service manager for Linux. For maintaining your installation, it is a good idea to learn the basics about it.
@@ -897,6 +899,8 @@ location can be symlinked to the repository. Combined with `pacman` package data
 
 #### Drivers
 
+UMA FRAME BUFFER SIZE
+
 #### Window Managers & Compositors
 
 #### Login Manager
@@ -928,6 +932,8 @@ location can be symlinked to the repository. Combined with `pacman` package data
 #### DNS
 
 #### Firewall
+
+SIMPLE STATEFUL FIREWALL
 
 #### Network Shares
 
