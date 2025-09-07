@@ -314,11 +314,15 @@ In the following, steps for installing an [Arch Linux](https://archlinux.org/) b
 
       > **Note that backslahes `\` are used instead of `/` as separators for the path**
 
-   9. Adapt the boot loader configuration to include kernel parameters for encryption. Edit `/boot/loader/entries/arch.conf` and add
+   9. Adapt the boot loader configuration to include kernel parameters for encryption. Edit `/boot/loader/loader.conf` like
 
-      <pre>options cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root rw quiet splash</pre>
+      <pre>default arch.conf<br>timeout 5<br>console-mode max<br>editor no</pre>
 
-      to the `options` line. Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced according to what `blkid` says.
+      and add the `/boot/loader/entries/arch.conf` file:
+
+      <pre>title Arch Linux<br>linux /vmlinuz-linux<br>initrd /initramfs-linux.img<br>options cryptdevice=UUID=<i>device</i>:root root=/dev/mapper/root rw quiet splash</pre>
+
+      Here, the device refers to the UUID of the LUKS superblock such as `nvme0n1p2` and must be replaced according to what `blkid` says.
 
       > **The UUID in the likely preexisting `root` option should be replaced to avoid duplication conflicts, although in case of redundant entries, usually only the latter is registered
       by the kernel. Otherwise, the order does not matter as flags are independent from each another. Further parameters like `rw` or `ro` specify read write or read only mounting options.
