@@ -975,6 +975,8 @@ SIMPLE STATEFUL FIREWALL
 
 #### Fonts
 
+`nerd-fonts`
+
 #### Themes
 
 <br><br>
