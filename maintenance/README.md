@@ -907,6 +907,8 @@ UMA FRAME BUFFER SIZE
 
 #### Login Manager
 
+HOME PERMISSIONS 755 NOT 700
+
 #### User Directories
 
 <br><br>
