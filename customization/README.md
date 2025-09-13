@@ -30,6 +30,7 @@
 - [pwgen](https://archlinux.org/packages/extra/x86_64/pwgen/) Password Generator
 - [keepassxc](https://archlinux.org/packages/extra/x86_64/keepassxc/) Password Manager
 - [firewalld](https://archlinux.org/packages/extra/any/firewalld/) Firewall Daemon
+- [brightnessctl](https://archlinux.org/packages/extra/x86_64/brightnessctl/) Brightness Utility
 
 #### Internet
 
