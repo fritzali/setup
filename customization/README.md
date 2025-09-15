@@ -59,6 +59,7 @@
 
 - [mpv](https://archlinux.org/packages/extra/x86_64/mpv/) | [vlc](https://archlinux.org/packages/extra/x86_64/vlc/) Multimedia Player
 - [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio/) | [pipewire](https://archlinux.org/packages/extra/x86_64/pipewire/) Sound Server
+- [spotify](https://archlinux.org/packages/extra/x86_64/spotify-launcher/) Spotify Launcher
 - [zathura](https://archlinux.org/packages/extra/x86_64/zathura/) PDF Viewer
 
 <br><br>
