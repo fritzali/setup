@@ -31,6 +31,7 @@
 - [keepassxc](https://archlinux.org/packages/extra/x86_64/keepassxc/) Password Manager
 - [firewalld](https://archlinux.org/packages/extra/any/firewalld/) Firewall Daemon
 - [brightnessctl](https://archlinux.org/packages/extra/x86_64/brightnessctl/) Brightness Utility
+- [man](https://archlinux.org/packages/core/x86_64/man-db/) Manual Pages Database
 
 #### Internet
 
