@@ -36,7 +36,7 @@
 #### Internet
 
 - [firefox](https://archlinux.org/packages/extra/x86_64/firefox/) | [chromium](https://archlinux.org/packages/extra/x86_64/chromium/) Browser
-- [thunderbird](https://archlinux.org/packages/extra/x86_64/thunderbird/) Mail Client
+- [thunderbird](https://archlinux.org/packages/extra/x86_64/thunderbird/) | [neomutt](https://archlinux.org/packages/extra/x86_64/neomutt/) Mail Client
 
 #### Typesetting
 
