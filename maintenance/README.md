@@ -843,7 +843,7 @@ a general backup tool. Be careful to not share any sensitive data. As an example
 
   Also specify to reconcile divergent branches by merging:
 
-  <pre>git config pull.rebase false</pre>>
+  <pre>git config pull.rebase false</pre>
 
   Use the `--global` flag to make this the default.
   - print the repository status:
