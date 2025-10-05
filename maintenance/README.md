@@ -841,6 +841,10 @@ a general backup tool. Be careful to not share any sensitive data. As an example
   <pre>git config user.email "<i>address</i>"</pre>
   <pre>git config user.name "<i>alias</i>"</pre>
 
+  Also specify to reconcile divergent branches by merging:
+
+  <pre>git config pull.rebase false</pre>>
+
   Use the `--global` flag to make this the default.
   - print the repository status:
 
